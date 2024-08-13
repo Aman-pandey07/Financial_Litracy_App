@@ -5,8 +5,10 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
@@ -18,18 +20,22 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import kotlinx.coroutines.launch
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun OnboardingScreen(onFinished: () -> Unit) {
+fun OnboardingScreen(navController: NavController,onFinished: () -> Unit) {
     val pages = listOf(OnboardingModel.FirstPages,OnboardingModel.SecondPages)
     val pagerState = rememberPagerState (initialPage = 0){
         pages.size
     }
     val scope = rememberCoroutineScope()
-    Column {
-        Row(modifier = Modifier.fillMaxWidth(),
+    Column(modifier = Modifier.fillMaxSize()) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(0.dp),
             horizontalArrangement = Arrangement.End,
             verticalAlignment = Alignment.Bottom
         ) { ButtonUI(text = "Skip",
@@ -38,22 +44,28 @@ fun OnboardingScreen(onFinished: () -> Unit) {
             textStyle = MaterialTheme.typography.bodyMedium,
             fontSize = 20) {/* manage onclick here*/} }
 
+        Spacer(modifier = Modifier.size(60.dp))
+
 
         HorizontalPager(state = pagerState) {index ->
             OnboardingGraphUI(onboardingModel = pages[index])
         }
 
 
-        Spacer(modifier = Modifier.size(50.dp))
+        Spacer(modifier = Modifier.size(60.dp))
 
 
-        Row(modifier = Modifier.fillMaxWidth(),
+        Row(modifier = Modifier
+            .fillMaxWidth()
+            .padding(0.dp),
                 horizontalArrangement = Arrangement.Center,
             verticalAlignment = Alignment.Bottom
         ) { IndicatorUI(pageSize = pages.size, currentPage = pagerState.currentPage) }
 
 
-        Row(modifier = Modifier.fillMaxWidth(),
+        Row(modifier = Modifier
+            .fillMaxWidth()
+            .padding(0.dp),
             horizontalArrangement = Arrangement.Center,
             verticalAlignment = Alignment.Bottom
         ) {
@@ -73,10 +85,10 @@ fun OnboardingScreen(onFinished: () -> Unit) {
     }
 }
 
-@Preview(showBackground = true)
-@Composable
-fun OnboardingScreenPreview(){
-    OnboardingScreen{
-
-    }
-}
+//@Preview(showBackground = true)
+//@Composable
+//fun OnboardingScreenPreview(){
+//    OnboardingScreen{
+//
+//    }
+//}

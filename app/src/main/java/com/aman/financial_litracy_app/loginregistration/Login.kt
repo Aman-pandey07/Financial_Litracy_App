@@ -16,6 +16,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -31,6 +32,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.aman.financial_litracy_app.R
+import com.aman.financial_litracy_app.navigation.Routes
 
 @Composable
 fun Login() {
@@ -55,7 +57,9 @@ fun Login() {
             textAlign = TextAlign.Center
         )
         Spacer(modifier = Modifier.height(16.dp))
-        Text(text = "Email", modifier = Modifier.padding(start = 20.dp).align(Alignment.Start))
+        Text(text = "Email", modifier = Modifier
+            .padding(start = 20.dp)
+            .align(Alignment.Start))
         OutlinedTextField(
             value = emailState.value,
             onValueChange = { emailState.value = it },
@@ -65,7 +69,9 @@ fun Login() {
                 .padding(20.dp),
         )
         Spacer(modifier = Modifier.height(10.dp))
-        Text(text = "Password", modifier = Modifier.padding(start = 20.dp).align(Alignment.Start))
+        Text(text = "Password", modifier = Modifier
+            .padding(start = 20.dp)
+            .align(Alignment.Start))
         OutlinedTextField(
             value = passwordState.value,
             onValueChange = { passwordState.value = it },
@@ -89,7 +95,7 @@ fun Login() {
 
         Spacer(modifier = Modifier.height(16.dp))
         Button(
-            onClick = { /* Handle login */ },
+            onClick = {  },
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(20.dp)
@@ -117,7 +123,7 @@ fun Login() {
 
         }
         Spacer(modifier = Modifier.height(16.dp))
-        Text(text = "Don't have an account? Sign Up")
+        TextButton(onClick = { }){ Text(text = "Don't have an account? Sign Up")}
 
     }
 

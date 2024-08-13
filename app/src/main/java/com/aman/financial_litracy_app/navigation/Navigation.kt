@@ -33,7 +33,7 @@ fun App() {
             Login()
         }
         composable(Routes.SignupStart) {
-            SignupStart(navController)
+            SignupStart()
         }
         composable(Routes.SignupComplete) {
             SignupComplete(navController)

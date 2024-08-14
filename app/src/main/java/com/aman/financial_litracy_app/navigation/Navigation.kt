@@ -39,19 +39,19 @@ fun App() {
             SignupComplete(navController)
         }
         composable(Routes.ForgetPassword1) {
-            ForgetPassword1(navController)
+            ForgetPassword1()
         }
         composable(Routes.ForgetPassword2) {
-            ForgetPassword2(navController)
+            ForgetPassword2()
         }
         composable(Routes.ForgetPassword3) {
-            ForgetPassword3(navController)
+            ForgetPassword3()
         }
         composable(Routes.ForgetPassword4) {
-            ForgetPassword4(navController)
+            ForgetPassword4()
         }
         composable(Routes.SelectClass) {
-            SelectClass(navController)
+            SelectClass()
         }
         composable(Routes.HomeScreen) {
             HomeScreen(navController)

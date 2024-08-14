@@ -4,6 +4,6 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavController
 
 @Composable
-fun ForgetPassword4(navController: NavController) {
-
+fun ForgetPassword4() {
+//password reset success popup
 }

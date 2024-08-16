@@ -54,7 +54,7 @@ fun App() {
             SelectClass()
         }
         composable(Routes.HomeScreen) {
-            HomeScreen(navController)
+            HomeScreen()
         }
         composable(Routes.OnboardingScreen) {
             OnboardingScreen(navController) { navController.navigate(Routes.Login) }

@@ -1,32 +1,41 @@
 package com.aman.financial_litracy_app.homescreen
 
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
-import androidx.compose.material.icons.filled.Clear
 import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material3.BottomAppBar
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.CardElevation
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -37,8 +46,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -84,6 +95,22 @@ fun HomeScreen(){
 
 
                 Text(text = "Hii this is area to fill honestly i have not done work today just to maintain streak i am pushing rubbish on gothub")
+
+                HorizontalCardList(courses = dummyCourses)
+
+                Row {
+                    Text(text = "Popular courses", modifier = Modifier.weight(1f),)
+                    TextButton(onClick = { /*TODO*/ }, modifier = Modifier.weight(1f)) {
+                        Text(text = "See all")
+                    }
+                }
+
+                HorizontalCardList1(courses = dummyCourses1)
+
+
+
+
+
             }
         },
 
@@ -194,7 +221,7 @@ fun CourseSelectionRow(courses: List<String>) {
             val isSelected = course == selectedCourse
             Box(
                 modifier = Modifier
-                    .padding(horizontal = 8.dp,vertical = 8.dp)
+                    .padding(horizontal = 8.dp, vertical = 8.dp)
                     .background(if (isSelected) Color.Blue else Color.LightGray)
                     .clickable { selectedCourse = course },
                 contentAlignment = Alignment.Center,
@@ -211,3 +238,182 @@ fun CourseSelectionRow(courses: List<String>) {
     }
 }
 
+
+
+// horizontal list of card
+
+val dummyCourses = listOf(
+    Course(
+        imageResId = R.drawable.author_image, // Replace with actual image resource
+        title = "Learn Kotlin Programming",
+        price = "$19.99",
+        author = "John Doe",
+        duration = "3 hours"
+    ),
+    Course(
+        imageResId = R.drawable.author_image, // Replace with actual image resource
+        title = "Android App Development",
+        price = "$24.99",
+        author = "Jane Smith",
+        duration = "5 hours"
+    ),
+    Course(
+        imageResId = R.drawable.author_image, // Replace with actual image resource
+        title = "Web Development Basics",
+        price = "$14.99",
+        author = "Michael Johnson",
+        duration = "4 hours"
+    ),
+    // Add more courses as needed
+)
+data class Course(
+    val imageResId: Int,
+    val title: String,
+    val price: String,
+    val author: String,
+    val duration: String
+)
+@Composable
+fun HorizontalCardList(courses: List<Course>) {
+    LazyRow {
+        items(courses) { course ->
+            CourseCard(course)
+        }
+    }
+}
+@Composable
+fun CourseCard(course: Course) {
+    Card(
+        modifier = Modifier
+            .padding(8.dp)
+            .width(200.dp), // Adjust card width as needed
+        shape = RoundedCornerShape(8.dp),
+        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
+    ) {
+        Column(
+            modifier = Modifier.padding(16.dp)
+        ) {
+            Image(
+                painter = painterResource(id = course.imageResId),
+                contentDescription = null, // Add content description for accessibility
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(150.dp),
+                contentScale = ContentScale.Crop
+            )
+            Spacer(modifier = Modifier.height(8.dp))
+            Text(
+                text = course.title,
+                fontWeight = FontWeight.Bold
+            )
+            Text(text = course.price, color = Color.Blue)
+            Row(
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Image(
+                    painter = painterResource(id = R.drawable.author_image), // Replace with actual author image
+                    contentDescription = null,
+                    modifier = Modifier.size(32.dp)
+                )
+                Spacer(modifier = Modifier.width(8.dp))
+                Text(text = course.author)
+            }
+            Text(text = course.duration)
+        }
+    }
+}
+
+
+// the course list data
+data class Course1(
+    val imageResId: Int? = null, // Optional image resource
+    val title: String,
+    val price: String,
+    val author: String,
+    val duration: String
+)
+
+@Composable
+fun HorizontalCardList1(courses: List<Course1>) {
+    LazyColumn (modifier = Modifier.fillMaxWidth()){
+        items(courses) { course ->
+            CourseCard1(course)
+        }
+    }
+}
+
+@Composable
+fun CourseCard1(course: Course1) {
+    Card(
+        modifier = Modifier
+            .padding(8.dp)
+            .fillMaxWidth(), // Adjust card width as needed
+        shape = RoundedCornerShape(8.dp),
+        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
+    ) {
+
+        Row {
+            course.imageResId?.let {
+                Image(
+                    painter = painterResource(id = it),
+                    contentDescription = null, // Add content description for accessibility
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(150.dp),
+                    contentScale = ContentScale.Crop
+                )
+            }
+
+//            Spacer(modifier = Modifier.height(8.dp))
+            Column(
+                modifier = Modifier.padding(16.dp)
+            ) {
+                Text(
+                    text = course.title,
+                    fontWeight = FontWeight.Bold
+                )
+                Text(text = course.price, color = Color.Blue)
+                Row(
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Text(text = course.author)
+                    Spacer(modifier = Modifier.width(8.dp))
+                    Text(text = course.duration)
+                }
+            }
+        }
+
+    }
+}
+
+
+val dummyCourses1 = listOf(
+    Course1(
+        imageResId = R.drawable.author_image, // Replace with actual image resource
+        title = "Kotlin Fundamentals",
+        price = "$19.99",
+        author = "Alex Smith",
+        duration = "3 hours"
+    ),
+    Course1(
+        imageResId = R.drawable.author_image, // Replace with actual image resource
+        title = "Android Jetpack Compose",
+        price = "$24.99",
+        author = "Emily Johnson",
+        duration = "5 hours"
+    ),
+    Course1(
+        imageResId = R.drawable.author_image,
+        title = "Database Design", // Example without image
+        price = "$14.99",
+        author = "David Brown",
+        duration = "4 hours"
+    ),
+    Course1(
+        imageResId = R.drawable.author_image, // Replace with actual image resource
+        title = "Machine Learning Basics",
+        price = "$29.99",
+        author = "Sarah Lee",
+        duration = "6 hours"
+    )
+)

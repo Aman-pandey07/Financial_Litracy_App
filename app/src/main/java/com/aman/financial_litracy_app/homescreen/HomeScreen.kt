@@ -83,7 +83,7 @@ fun HomeScreen(){
 
 
 
-                Text(text = "Hii this is area to fill honestly i have not done work today just to maintain streak i am pushing rubbish on hothub")
+                Text(text = "Hii this is area to fill honestly i have not done work today just to maintain streak i am pushing rubbish on gothub")
             }
         },
 

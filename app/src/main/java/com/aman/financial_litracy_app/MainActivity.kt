@@ -8,6 +8,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
+import com.aman.financial_litracy_app.homescreen.HomeScreen
 
 import com.aman.financial_litracy_app.ui.theme.Financial_Litracy_AppTheme
 
@@ -20,9 +21,10 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             Financial_Litracy_AppTheme {
-                Surface(color = MaterialTheme.colorScheme.background) {
-                    App()
-                }
+//                Surface(color = MaterialTheme.colorScheme.background) {
+//                    App()
+//                }
+                HomeScreen()
 
 
             }

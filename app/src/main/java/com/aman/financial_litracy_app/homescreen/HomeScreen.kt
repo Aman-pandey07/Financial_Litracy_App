@@ -9,15 +9,20 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.DateRange
@@ -47,12 +52,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.layout.HorizontalAlignmentLine
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.max
 import com.aman.financial_litracy_app.R
 
 
@@ -83,7 +90,9 @@ fun HomeScreen(){
 
 
         content = {
-            Column(modifier = Modifier.padding(it)) {
+            Column(modifier = Modifier
+                .padding(it)
+                .verticalScroll(rememberScrollState())) {
                 
 
                 SearchBar()
@@ -94,7 +103,7 @@ fun HomeScreen(){
 
 
 
-                Text(text = "Hii this is area to fill honestly i have not done work today just to maintain streak i am pushing rubbish on gothub")
+//                Text(text = "Hii this is area to fill honestly i have not done work today just to maintain streak i am pushing rubbish on gothub")
 
                 HorizontalCardList(courses = dummyCourses)
 
@@ -106,6 +115,8 @@ fun HomeScreen(){
                 }
 
                 HorizontalCardList1(courses = dummyCourses1)
+                Text(text = "Hii this is area to fill honestly i have not done work today just to maintain streak i am pushing rubbish on gothub")
+
 
 
 
@@ -169,13 +180,14 @@ fun BottomAppBarItem(
     label: String,
     onClick: () -> Unit
 ) {
-    IconButton(onClick = onClick) {
-        Column {
+    Column(horizontalAlignment = Alignment.CenterHorizontally) {
+        IconButton(onClick = onClick) {
             Icon(icon, contentDescription = label, modifier = Modifier.fillMaxWidth())
-            Text(text = label)
         }
-
+//        Spacer(modifier = Modifier.padding())
+        Text(text = label)
     }
+
 }
 
 // Search bar code
@@ -335,7 +347,9 @@ data class Course1(
 
 @Composable
 fun HorizontalCardList1(courses: List<Course1>) {
-    LazyColumn (modifier = Modifier.fillMaxWidth()){
+    LazyColumn (modifier = Modifier
+        .fillMaxWidth()
+        .heightIn(max = 300.dp)){
         items(courses) { course ->
             CourseCard1(course)
         }
@@ -346,10 +360,11 @@ fun HorizontalCardList1(courses: List<Course1>) {
 fun CourseCard1(course: Course1) {
     Card(
         modifier = Modifier
-            .padding(8.dp)
-            .fillMaxWidth(), // Adjust card width as needed
-        shape = RoundedCornerShape(8.dp),
-        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
+            .padding(15.dp)
+            .fillMaxWidth()
+            .height(100.dp), // Adjust card width as needed
+        shape = RoundedCornerShape(15.dp),
+        elevation = CardDefaults.cardElevation(defaultElevation = 14.dp)
     ) {
 
         Row {
@@ -357,16 +372,16 @@ fun CourseCard1(course: Course1) {
                 Image(
                     painter = painterResource(id = it),
                     contentDescription = null, // Add content description for accessibility
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .height(150.dp),
+                    modifier = Modifier.padding(10.dp),
                     contentScale = ContentScale.Crop
                 )
             }
 
 //            Spacer(modifier = Modifier.height(8.dp))
             Column(
-                modifier = Modifier.padding(16.dp)
+                modifier = Modifier
+                    .padding(10.dp)
+                    .fillMaxSize()
             ) {
                 Text(
                     text = course.title,

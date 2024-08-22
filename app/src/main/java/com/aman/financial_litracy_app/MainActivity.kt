@@ -6,9 +6,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import com.aman.financial_litracy_app.homescreen.HomeScreen
+import com.aman.financial_litracy_app.homescreen.LeftNavigationDrawer
 
 import com.aman.financial_litracy_app.ui.theme.Financial_Litracy_AppTheme
 
@@ -24,7 +22,7 @@ class MainActivity : ComponentActivity() {
 //                Surface(color = MaterialTheme.colorScheme.background) {
 //                    App()
 //                }
-                HomeScreen()
+                LeftNavigationDrawer()
 
 
             }

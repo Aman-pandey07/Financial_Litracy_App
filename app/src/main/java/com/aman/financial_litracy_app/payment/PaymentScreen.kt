@@ -76,7 +76,7 @@ fun PaymentScreen() {
             Column(modifier= Modifier
                 .padding(it)
                 .fillMaxSize()
-                .verticalScroll(rememberScrollState())
+
 
             ) {
                     ProductInfoCard(
@@ -228,39 +228,9 @@ fun PaymentScreen() {
                         Text(text = "Submit")
                     }
                 }
-
-
             }
         }
     )
-//    Column {
-//        // Header
-//        Row(
-//            horizontalArrangement = Arrangement.Start
-//        ) {
-//            IconButton(onClick = { /* Handle back navigation */ }) {
-//                Icon(
-//                    imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-//                    contentDescription = "Back"
-//                )
-//            }
-//            Text(text = "Payment Details", style = MaterialTheme.typography.titleMedium)
-//        }
-//
-//        // Product Information
-//        ProductInfoCard(
-//            productName = "Finance Courses",
-//            instructorName = "Vilian Neiro",
-//            price = "$4.99",
-//            duration = "2 hours 15 minutes",
-//            numberOfLessons = 15,
-//            // Add image placeholder here
-//            imagePlaceholder = R.drawable.course_image_pay
-//        )
-//
-//        // Payment Details Section
-//        PaymentDetailsSection()
-//    }
 }
 
 @Preview(showBackground = true)
@@ -313,12 +283,3 @@ fun ProductInfoCard(
     )
 }
 
-@Composable
-fun PaymentDetailsSection() {
-    Card {
-        Column(modifier = Modifier.padding(16.dp)) {
-            Text(text = "Payment", style = MaterialTheme.typography.headlineSmall)
-            Text(text = "All transactions are secure and encrypted.", style = MaterialTheme.typography.labelSmall)
-        }
-    }
-}

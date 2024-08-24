@@ -1,14 +1,14 @@
 package com.aman.financial_litracy_app
 
-import App
 import android.os.Bundle
 
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import com.aman.financial_litracy_app.courses.CourseListScreen
-import com.aman.financial_litracy_app.homescreen.LeftNavigationDrawer
-import com.aman.financial_litracy_app.payment.PaymentScreen
+import com.aman.financial_litracy_app.leftnavigationdrawer.AboutUsScreen
+import com.aman.financial_litracy_app.leftnavigationdrawer.ContactUsScreen
+import com.aman.financial_litracy_app.leftnavigationdrawer.TermsAndConditionScreen
 
 import com.aman.financial_litracy_app.ui.theme.Financial_Litracy_AppTheme
 
@@ -24,7 +24,7 @@ class MainActivity : ComponentActivity() {
 //                Surface(color = MaterialTheme.colorScheme.background) {
 //                    App()
 //                }
-                CourseListScreen()
+                TermsAndConditionScreen()
 
 
             }

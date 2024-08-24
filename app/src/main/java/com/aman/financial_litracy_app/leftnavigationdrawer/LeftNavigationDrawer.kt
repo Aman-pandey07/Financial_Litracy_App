@@ -1,4 +1,4 @@
-package com.aman.financial_litracy_app.homescreen
+package com.aman.financial_litracy_app.leftnavigationdrawer
 
 
 import androidx.compose.foundation.Image

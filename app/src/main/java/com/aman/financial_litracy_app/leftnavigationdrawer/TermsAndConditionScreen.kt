@@ -65,7 +65,7 @@ fun TermsAndConditionScreen() {
                 TextCard(title = "5. Clause 5", content = "The sun dappled through the leaves as I strolled along the winding path. Birdsong filled the air, and the gentle breeze carried the sweet scent of wildflowers. A gentle smile crept across my face as I savored the tranquility of the moment.")
                 TextCard(title = "6. Clause 6", content = "The sun dappled through the leaves as I strolled along the winding path. Birdsong filled the air, and the gentle breeze carried the sweet scent of wildflowers. A gentle smile crept across my face as I savored the tranquility of the moment.")
                 TextCard(title = "7. Clause 7", content = "The sun dappled through the leaves as I strolled along the winding path. Birdsong filled the air, and the gentle breeze carried the sweet scent of wildflowers. A gentle smile crept across my face as I savored the tranquility of the moment.")
-                TextCard(title = "8. Clause 8", content = "The sun dappled through the leaves as I strolled along the winding path. Birdsong filled the air, and the gentle breeze carried the sweet scent of wildflowers. A gentle smile crept across my face as I savored the tranquility of the moment.")
+                TextCard(title = "8. Clause 8", content = "The sun dappled through the leaves as I strolled along the winding path. Birdsong filled the air, and the gentle breeze carried the sweet scent of wildflowers. A gentle smile crept across my face as I savored the tranquility of the moment. hii this is tp")
                 Button(
                     onClick = { /*TODO*/ },
                     modifier = Modifier.fillMaxWidth(),

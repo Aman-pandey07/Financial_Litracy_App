@@ -5,6 +5,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -35,7 +36,7 @@ import com.aman.financial_litracy_app.viewmodel.CourseViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun CourseListScreen() {
+fun CourseListScreen(courseViewModel: CourseViewModel) {
     Scaffold (
         topBar = {
             TopAppBar(
@@ -56,23 +57,15 @@ fun CourseListScreen() {
         },
         content = {
 
-            val courseViewModel:CourseViewModel = viewModel()
 
-            val courseList = listOf(
-                CourseInfo("Financial Literacy for Beginners", "Dr. Emily Davis", "2 Months", 12, R.drawable.course_image_pay),
-                CourseInfo("Understanding Credit Scores and Reports", "Professor Mark Johnson", "1 Month", 8, R.drawable.course_image_pay),
-                CourseInfo("Budgeting and Saving Strategies", "Financial Advisor Sarah Lee", "3 Weeks", 6, R.drawable.course_image_pay),
-                CourseInfo("Investing Basics: Stocks, Bonds, and Mutual Funds", "Investment Expert David Kim", "4 Months", 16, R.drawable.course_image_pay),
-                CourseInfo("Retirement Planning: 401(k)s, IRAs, and Social Security", "Retirement Planner Karen Taylor", "2 Months", 10, R.drawable.course_image_pay),
-                CourseInfo("Personal Finance for College Students", "Student Financial Advisor Alex Brown", "1 Week", 4, R.drawable.course_image_pay),
-                CourseInfo("Debt Management and Repayment Strategies", "Debt Counselor Michael White", "3 Months", 12, R.drawable.course_image_pay),
-                CourseInfo("Understanding Taxes and Filing Your Returns", "Tax Accountant Lisa Nguyen", "2 Months", 8, R.drawable.course_image_pay),
-                CourseInfo("Building Wealth and Financial Independence", "Financial Coach Emily Chen", "6 Months", 20, R.drawable.course_image_pay),
-                CourseInfo("Financial Planning for Entrepreneurs", "Small Business Advisor David Lee", "4 Months", 16, R.drawable.course_image_pay)
-            )
+
+
             LazyColumn(
-                modifier = Modifier.padding(it)
+                modifier = Modifier.fillMaxSize().padding(it)
             ){
+                item {
+                    AllCoursesHeader()
+                }
                 items(courseViewModel.getCourses()){ course ->
                     ProductInfoCard(
                         productName = course.courseName,
@@ -83,6 +76,8 @@ fun CourseListScreen() {
                     )
                 }
             }
+
+            //hardcoded data
 //            LazyColumn(
 //                modifier = Modifier
 //                    .fillMaxSize()
@@ -109,8 +104,8 @@ fun CourseListScreen() {
 
 @Preview
 @Composable
-fun CourseListScreenPrevi() {
-    CourseListScreen()
+fun CourseListScreenPreview() {
+    CourseListScreen(courseViewModel = CourseViewModel())
 }
 
 @Composable
@@ -159,13 +154,7 @@ fun ProductInfoCard(
 }
 
 
-data class CourseInfo(
-    val productName: String,
-    val instructorName: String,
-    val duration: String,
-    val numberOfLessons: Int,
-    val imagePlaceholder: Int
-)
+
 
 @Composable
 fun AllCoursesHeader() {

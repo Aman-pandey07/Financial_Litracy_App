@@ -31,28 +31,28 @@ fun App() {
         startDestination =Routes.OnboardingScreen
     ) {
         composable(Screens.Login.route) {
-            Login()
+            Login(navController)
         }
         composable(Screens.SignupStart.route) {
-            SignupStart()
+            SignupStart(navController)
         }
         composable(Screens.SignupComplete.route) {
             SignupComplete(navController)
         }
         composable(Screens.ForgetPassword1.route) {
-            ForgetPassword1()
+            ForgetPassword1(navController)
         }
         composable(Screens.ForgetPassword2.route) {
-            ForgetPassword2()
+            ForgetPassword2(navController)
         }
         composable(Screens.ForgetPassword3.route) {
-            ForgetPassword3()
+            ForgetPassword3(navController)
         }
         composable(Screens.ForgetPassword4.route) {
-            ForgetPassword4()
+            ForgetPassword4(navController)
         }
         composable(Screens.SelectClass.route) {
-            SelectClass()
+            SelectClass(navController)
         }
         composable(Screens.HomeScreen.route) {
             HomeScreen()

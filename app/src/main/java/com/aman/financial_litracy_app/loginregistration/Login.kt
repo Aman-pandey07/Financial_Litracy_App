@@ -33,9 +33,10 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.aman.financial_litracy_app.R
 import com.aman.financial_litracy_app.navigation.Routes
+import com.aman.financial_litracy_app.navigation.Screens
 
 @Composable
-fun Login() {
+fun Login(navController: NavController) {
     val emailState = remember{ mutableStateOf("") }
     val passwordState = remember{ mutableStateOf("") }
     val rememberMeChecked = remember { mutableStateOf(false) }
@@ -95,7 +96,7 @@ fun Login() {
 
         Spacer(modifier = Modifier.height(16.dp))
         Button(
-            onClick = {  },
+            onClick = { navController.navigate(Screens.SignupStart.route) },
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(20.dp)
@@ -128,8 +129,8 @@ fun Login() {
     }
 
 }
-@Preview(showBackground = true)
-@Composable
-fun LoginPrevi(){
-    Login()
-}
+//@Preview(showBackground = true)
+//@Composable
+//fun LoginPrevi(){
+//    Login()
+//}

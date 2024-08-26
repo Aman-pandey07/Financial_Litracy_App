@@ -31,11 +31,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.aman.financial_litracy_app.R
-
+import com.aman.financial_litracy_app.navigation.Screens
 
 
 @Composable
-fun SignupStart() {
+fun SignupStart(navController: NavController) {
 
     val fullName = remember{ mutableStateOf("") }
     val email = remember { mutableStateOf("") }
@@ -113,7 +113,10 @@ fun SignupStart() {
                 Spacer(modifier = Modifier.height(16.dp))
 
                 Button(
-                    onClick = { /* Handle signup */ },
+                    onClick = {
+                        navController.navigate(Screens.ForgetPassword1.route)
+                    /* Handle signup */
+                    },
                     modifier = Modifier.fillMaxWidth()
                 ) {
                     Text(text = "Sign up")
@@ -147,8 +150,8 @@ fun SignupStart() {
 
 
 
-@Preview(showBackground = true)
-@Composable
-fun SignStartPreview(){
-    SignupStart()
-}
+//@Preview(showBackground = true)
+//@Composable
+//fun SignStartPreview(){
+//    SignupStart()
+//}

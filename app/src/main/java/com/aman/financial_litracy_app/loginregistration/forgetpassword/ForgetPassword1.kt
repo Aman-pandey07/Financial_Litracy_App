@@ -19,9 +19,10 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.aman.financial_litracy_app.navigation.Screens
 
 @Composable
-fun ForgetPassword1() {
+fun ForgetPassword1(navController: NavController) {
     var email by remember { mutableStateOf("") }
 
     Column(
@@ -42,15 +43,18 @@ fun ForgetPassword1() {
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email)
         )
 
-        Button(onClick = { /* Handle submit */ }) {
+        Button(onClick = {
+            navController.navigate(Screens.ForgetPassword2.route)
+        /* Handle submit */
+        }) {
             Text(text = "Submit")
         }
 
         Text(text = "Already have an account? Log in")
     }
 }
-@Preview(showBackground = true)
-@Composable
-fun fp1(){
-    ForgetPassword1()
-}
+//@Preview(showBackground = true)
+//@Composable
+//fun fp1(){
+//    ForgetPassword1()
+//}

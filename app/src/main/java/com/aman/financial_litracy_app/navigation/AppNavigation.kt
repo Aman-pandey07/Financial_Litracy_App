@@ -15,6 +15,7 @@ import com.aman.financial_litracy_app.loginregistration.forgetpassword.ForgetPas
 import com.aman.financial_litracy_app.loginregistration.forgetpassword.ForgetPassword3
 import com.aman.financial_litracy_app.loginregistration.forgetpassword.ForgetPassword4
 import com.aman.financial_litracy_app.navigation.Routes
+import com.aman.financial_litracy_app.navigation.Screens
 import com.aman.financial_litracy_app.onboard.OnboardingScreen
 
 
@@ -29,40 +30,42 @@ fun App() {
         navController = navController,
         startDestination =Routes.OnboardingScreen
     ) {
-        composable(Routes.Login) {
+        composable(Screens.Login.route) {
             Login()
         }
-        composable(Routes.SignupStart) {
+        composable(Screens.SignupStart.route) {
             SignupStart()
         }
-        composable(Routes.SignupComplete) {
+        composable(Screens.SignupComplete.route) {
             SignupComplete(navController)
         }
-        composable(Routes.ForgetPassword1) {
+        composable(Screens.ForgetPassword1.route) {
             ForgetPassword1()
         }
-        composable(Routes.ForgetPassword2) {
+        composable(Screens.ForgetPassword2.route) {
             ForgetPassword2()
         }
-        composable(Routes.ForgetPassword3) {
+        composable(Screens.ForgetPassword3.route) {
             ForgetPassword3()
         }
-        composable(Routes.ForgetPassword4) {
+        composable(Screens.ForgetPassword4.route) {
             ForgetPassword4()
         }
-        composable(Routes.SelectClass) {
+        composable(Screens.SelectClass.route) {
             SelectClass()
         }
-        composable(Routes.HomeScreen) {
+        composable(Screens.HomeScreen.route) {
             HomeScreen()
         }
-        composable(Routes.OnboardingScreen) {
-            OnboardingScreen(navController) { navController.navigate(Routes.Login) }
+        composable(Screens.OnboardingScreen.route) {
+            OnboardingScreen(navController) {
+                navController.navigate(Routes.Login)
+            }
         }
     }
 }
 
 
-
+//             navController.popBackStack() this is for back button navigation
 
 

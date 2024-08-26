@@ -28,9 +28,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.aman.financial_litracy_app.R
+import com.aman.financial_litracy_app.navigation.Screens
 
 @Composable
-fun SelectClass(){
+fun SelectClass(navController: NavController){
 
     data class ClassItem(val name: String, val iconResId: Int)
     val classList = listOf(
@@ -81,7 +82,9 @@ fun SelectClass(){
             }
 
         Button(
-            onClick = { /* Handle next button click */ },
+            onClick = {
+                navController.navigate(Screens.HomeScreen.route)
+            /* Handle next button click */ },
             modifier = Modifier.fillMaxWidth(),
             shape = RoundedCornerShape(8.dp)
         ) {
@@ -113,8 +116,8 @@ fun SelectClass(){
         }
 }
 
-@Preview(showBackground = true)
-@Composable
-fun SelectClassPreview(){
-    SelectClass()
-}
+//@Preview(showBackground = true)
+//@Composable
+//fun SelectClassPreview(){
+//    SelectClass()
+//}

@@ -23,9 +23,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.aman.financial_litracy_app.navigation.Screens
 
 @Composable
-fun ForgetPassword2() {
+fun ForgetPassword2(navController: NavController) {
     var verificationCode by remember { mutableStateOf("") }
 
     Column(
@@ -61,7 +62,9 @@ fun ForgetPassword2() {
         }
 
         Button(
-            onClick = { /* Handle submit */ },
+            onClick = {
+            navController.navigate(Screens.ForgetPassword3.route)
+            /* Handle submit */ },
             modifier = Modifier.padding(top = 16.dp)
         ) {
             Text(text = "Submit")
@@ -78,8 +81,8 @@ fun ForgetPassword2() {
     }
 }
 
-@Preview(showBackground = true)
-@Composable
-fun fp2(){
-    ForgetPassword2()
-}
+//@Preview(showBackground = true)
+//@Composable
+//fun fp2(){
+//    ForgetPassword2()
+//}

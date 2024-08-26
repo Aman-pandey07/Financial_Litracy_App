@@ -5,7 +5,6 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -30,7 +29,9 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.aman.financial_litracy_app.R
+import com.aman.financial_litracy_app.viewmodel.CourseViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -55,6 +56,7 @@ fun CourseListScreen() {
         },
         content = {
 
+            val courseViewModel:CourseViewModel = viewModel()
 
             val courseList = listOf(
                 CourseInfo("Financial Literacy for Beginners", "Dr. Emily Davis", "2 Months", 12, R.drawable.course_image_pay),
@@ -69,25 +71,38 @@ fun CourseListScreen() {
                 CourseInfo("Financial Planning for Entrepreneurs", "Small Business Advisor David Lee", "4 Months", 16, R.drawable.course_image_pay)
             )
             LazyColumn(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(it)
+                modifier = Modifier.padding(it)
             ){
-                item {
-                    // AllCoursesHeader at the top of LazyColumn
-                    AllCoursesHeader()
-                }
-
-                items(courseList){course->
-                    com.aman.financial_litracy_app.payment.ProductInfoCard(
-                        productName = course.productName,
-                        instructorName = course.instructorName,
-                        duration = course.duration,
-                        numberOfLessons = course.numberOfLessons,
-                        imagePlaceholder = course.imagePlaceholder
+                items(courseViewModel.getCourses()){ course ->
+                    ProductInfoCard(
+                        productName = course.courseName,
+                        instructorName = course.courseInstructor,
+                        duration = course.courseDuration,
+                        numberOfLessons = course.courseDescription,
+                        imagePlaceholder = course.courseImage
                     )
                 }
             }
+//            LazyColumn(
+//                modifier = Modifier
+//                    .fillMaxSize()
+//                    .padding(it)
+//            ){
+//                item {
+//                    // AllCoursesHeader at the top of LazyColumn
+//                    AllCoursesHeader()
+//                }
+//
+//                items(courseList){course->
+//                    com.aman.financial_litracy_app.payment.ProductInfoCard(
+//                        productName = course.productName,
+//                        instructorName = course.instructorName,
+//                        duration = course.duration,
+//                        numberOfLessons = course.numberOfLessons,
+//                        imagePlaceholder = course.imagePlaceholder
+//                    )
+//                }
+//            }
         }
     )
 }
@@ -103,7 +118,7 @@ fun ProductInfoCard(
     productName: String,
     instructorName: String,
     duration: String,
-    numberOfLessons: Int,
+    numberOfLessons: String,
     imagePlaceholder: Int
 ) {
     Card (

@@ -24,7 +24,7 @@ class MainActivity : ComponentActivity() {
 //                Surface(color = MaterialTheme.colorScheme.background) {
 //                    App()
 //                }
-                TermsAndConditionScreen()
+                CourseListScreen()
 
 
             }

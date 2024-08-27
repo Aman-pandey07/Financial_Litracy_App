@@ -1,6 +1,6 @@
 package com.aman.financial_litracy_app.ui.theme
 
-import android.app.Activity
+
 import androidx.compose.ui.graphics.Color
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme

@@ -31,7 +31,7 @@ fun App() {
         startDestination =Routes.OnboardingScreen
     ) {
         composable(Screens.Login.route) {
-            Login(navController)
+            Login()
         }
         composable(Screens.SignupStart.route) {
             SignupStart(navController)

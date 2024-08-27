@@ -40,19 +40,19 @@ fun App() {
             SignupComplete(navController)
         }
         composable(Screens.ForgetPassword1.route) {
-            ForgetPassword1(navController)
+            ForgetPassword1()
         }
         composable(Screens.ForgetPassword2.route) {
-            ForgetPassword2(navController)
+            ForgetPassword2()
         }
         composable(Screens.ForgetPassword3.route) {
-            ForgetPassword3(navController)
+            ForgetPassword3()
         }
         composable(Screens.ForgetPassword4.route) {
             ForgetPassword4(navController)
         }
         composable(Screens.SelectClass.route) {
-            SelectClass(navController)
+            SelectClass()
         }
         composable(Screens.HomeScreen.route) {
             HomeScreen()

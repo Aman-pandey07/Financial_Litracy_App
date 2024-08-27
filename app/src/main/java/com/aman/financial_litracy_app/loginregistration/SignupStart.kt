@@ -163,7 +163,7 @@ fun SignupStart(
             Spacer(modifier = Modifier.height(16.dp))
 
             HorizontalDivider(modifier = Modifier.padding(10.dp))
-            Text(text = "Or With", color = Color.Black)
+            Text(text = "Or With", color = Color.Black, modifier = Modifier.align(Alignment.CenterHorizontally))
 
             Spacer(modifier = Modifier.height(16.dp))
 

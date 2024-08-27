@@ -7,8 +7,11 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.grid.GridCells
@@ -17,6 +20,7 @@ import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -31,7 +35,9 @@ import com.aman.financial_litracy_app.R
 import com.aman.financial_litracy_app.navigation.Screens
 
 @Composable
-fun SelectClass(navController: NavController){
+fun SelectClass(
+//    navController: NavController
+){
 
     data class ClassItem(val name: String, val iconResId: Int)
     val classList = listOf(
@@ -50,14 +56,21 @@ fun SelectClass(navController: NavController){
                 .background(Color.White)
                 .padding(16.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.SpaceBetween
+            verticalArrangement = Arrangement.Top
 
         ) {
+            Spacer(modifier = Modifier.height(30.dp))
         Text(
             text = "Tell us about your child",
             style = MaterialTheme.typography.titleLarge,
-            textAlign = TextAlign.Center
+            modifier = Modifier.align(Alignment.Start)
         )
+            Text(
+                text = "Select the class of your child",
+                style = MaterialTheme.typography.labelSmall,
+                color = Color.LightGray,
+                modifier = Modifier.align(Alignment.Start)
+            )
 
 //        Column(
 //            modifier = Modifier.weight(1f),
@@ -70,20 +83,27 @@ fun SelectClass(navController: NavController){
 //            ClassButton(text = "Class 3", iconResId = R.drawable.medal_icon)
 //            ClassButton(text = "Class 4", iconResId = R.drawable.test_tubes_icon)
 //        }
-            LazyVerticalGrid(
-                columns = GridCells.Fixed(2),
-                contentPadding = PaddingValues(16.dp),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalArrangement = Arrangement.spacedBy(16.dp)
-            ) {
-                items(classList) { classItem ->
-                    ClassButton(text = classItem.name, iconResId = classItem.iconResId)
+            Surface(modifier = Modifier
+                .weight(1f)
+                .fillMaxHeight()) {
+                // ... your LazyVerticalGrid code here
+                LazyVerticalGrid(
+                    columns = GridCells.Fixed(2),
+                    contentPadding = PaddingValues(16.dp),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalArrangement = Arrangement.spacedBy(16.dp),
+                    modifier = Modifier
+                ) {
+                    items(classList) { classItem ->
+                        ClassButton(text = classItem.name, iconResId = classItem.iconResId)
+                    }
                 }
             }
 
+
         Button(
             onClick = {
-                navController.navigate(Screens.HomeScreen.route)
+//                navController.navigate(Screens.HomeScreen.route)
             /* Handle next button click */ },
             modifier = Modifier.fillMaxWidth(),
             shape = RoundedCornerShape(8.dp)
@@ -99,7 +119,8 @@ fun SelectClass(navController: NavController){
             modifier = Modifier
                 .padding(8.dp)
                 .fillMaxWidth()
-                .clickable { /* Handle class selection */ },
+                .clickable { /* Handle class selection */ }
+                .size(180.dp),
             contentAlignment = Alignment.Center
         ) {
             Column(
@@ -116,8 +137,8 @@ fun SelectClass(navController: NavController){
         }
 }
 
-//@Preview(showBackground = true)
-//@Composable
-//fun SelectClassPreview(){
-//    SelectClass()
-//}
+@Preview(showBackground = true)
+@Composable
+fun SelectClassPreview(){
+    SelectClass()
+}

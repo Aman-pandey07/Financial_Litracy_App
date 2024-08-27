@@ -13,6 +13,7 @@ import com.aman.financial_litracy_app.courses.CourseListScreen
 import com.aman.financial_litracy_app.homescreen.NotificationScreen
 import com.aman.financial_litracy_app.leftnavigationdrawer.AboutUsScreen
 import com.aman.financial_litracy_app.leftnavigationdrawer.ContactUsScreen
+import com.aman.financial_litracy_app.leftnavigationdrawer.LeftNavigationDrawer
 import com.aman.financial_litracy_app.leftnavigationdrawer.TermsAndConditionScreen
 import com.aman.financial_litracy_app.loginregistration.SelectClass
 import com.aman.financial_litracy_app.loginregistration.SignupStart
@@ -33,7 +34,7 @@ class MainActivity : ComponentActivity() {
 //                Surface(color = MaterialTheme.colorScheme.background) {
 //                    App()
 //                }
-                SelectClass()
+                LeftNavigationDrawer()
             }
         }
     }

@@ -60,7 +60,7 @@ fun AboutUsScreen() {
                         .padding(5.dp)
                         .align(Alignment.CenterHorizontally)
                 )
-                HorizontalDivider()
+                HorizontalDivider(thickness = 5.dp, modifier = Modifier.padding(horizontal = 10.dp))
                 InfoCard(title = "Unmatched service", content = "Support corporate clients and financial investors with their growth strategy and international development.")
                 InfoCard(title = "Specific", content = "ConsultUs’ core expertise lies in the ability to support our clients in understanding, analysing and executing commercial and investment strategies in specific markets.")
                 InfoCard(title = "Experience", content = "Experience in working with and assisting a wide range of clients from international corporations to small/medium-sized businesses, from large corporate debt providers to mid-market private equity investors.")
@@ -73,7 +73,7 @@ fun AboutUsScreen() {
                         .padding(5.dp)
                         .align(Alignment.CenterHorizontally)
                 )
-                HorizontalDivider()
+                HorizontalDivider(thickness = 5.dp, modifier = Modifier.padding(horizontal = 10.dp))
 
                 InfoCard(title = "Specific", content = "ConsultUs’ core expertise lies in the ability to support our clients in understanding, analysing and executing commercial and investment strategies in specific markets.")
                 InfoCard(title = "Experience", content = "Experience in working with and assisting a wide range of clients from international corporations to small/medium-sized businesses, from large corporate debt providers to mid-market private equity investors.")

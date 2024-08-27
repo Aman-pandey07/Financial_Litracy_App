@@ -48,7 +48,7 @@ fun TermsAndConditionScreen() {
         },
         content = {
             Column(modifier = Modifier
-                .padding(it)
+                .padding(it).padding(10.dp)
                 .verticalScroll(rememberScrollState())) {
                 Text(
                     text = "last updated on 01/05/2024",
@@ -57,7 +57,7 @@ fun TermsAndConditionScreen() {
                         .padding(5.dp)
                         .align(Alignment.CenterHorizontally)
                 )
-                HorizontalDivider()
+                HorizontalDivider(thickness = 5.dp, modifier = Modifier.padding(horizontal = 10.dp))
                 TextCard(title = "1. Clause 1", content = "The sun dappled through the leaves as I strolled along the winding path. Birdsong filled the air, and the gentle breeze carried the sweet scent of wildflowers. A gentle smile crept across my face as I savored the tranquility of the moment.")
                 TextCard(title = "2. Clause 2", content = "The sun dappled through the leaves as I strolled along the winding path. Birdsong filled the air, and the gentle breeze carried the sweet scent of wildflowers. A gentle smile crept across my face as I savored the tranquility of the moment.")
                 TextCard(title = "3. Clause 3", content = "The sun dappled through the leaves as I strolled along the winding path. Birdsong filled the air, and the gentle breeze carried the sweet scent of wildflowers. A gentle smile crept across my face as I savored the tranquility of the moment.")

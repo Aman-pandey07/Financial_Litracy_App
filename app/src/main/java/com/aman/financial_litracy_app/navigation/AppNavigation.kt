@@ -34,7 +34,7 @@ fun App() {
             Login()
         }
         composable(Screens.SignupStart.route) {
-            SignupStart(navController)
+            SignupStart()
         }
         composable(Screens.SignupComplete.route) {
             SignupComplete(navController)

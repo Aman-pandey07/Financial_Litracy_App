@@ -149,7 +149,7 @@ fun SignupStart(
             Spacer(modifier = Modifier.height(16.dp))
             Button(
                 onClick = {
-                navController.navigate(Screens.SignupStart.route)
+                navController.navigate(Screens.ForgetPassword1.route)
                 },
                 modifier = Modifier
                     .fillMaxWidth()

@@ -9,7 +9,10 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.aman.financial_litracy_app.courses.Course
+import com.aman.financial_litracy_app.courses.CourseDetailScreen
 import com.aman.financial_litracy_app.courses.CourseListScreen
+import com.aman.financial_litracy_app.courses.Lesson
 import com.aman.financial_litracy_app.homescreen.HomeScreen
 import com.aman.financial_litracy_app.homescreen.NotificationScreen
 import com.aman.financial_litracy_app.leftnavigationdrawer.AboutUsScreen
@@ -37,7 +40,8 @@ class MainActivity : ComponentActivity() {
 //                Surface(color = MaterialTheme.colorScheme.background) {
 //                    App()
 //                }
-                HomeScreen()
+
+
             }
         }
     }

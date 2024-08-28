@@ -28,6 +28,7 @@ import com.aman.financial_litracy_app.navigation.Routes
 import com.aman.financial_litracy_app.navigation.Screens
 import com.aman.financial_litracy_app.onboard.OnboardingScreen
 import com.aman.financial_litracy_app.payment.PaymentScreen
+import com.aman.financial_litracy_app.viewmodel.CourseViewModel
 
 
 @Composable
@@ -64,7 +65,7 @@ fun App() {
             SelectClass(navController)
         }
         composable(Screens.HomeScreen.route) {
-            HomeScreen()
+            HomeScreen(navController)
         }
         composable(Screens.OnboardingScreen.route) {
             OnboardingScreen(navController) {
@@ -76,13 +77,13 @@ fun App() {
         }
 
 
-//        TODO this screen is left
+
 //        composable(Screens.CourseDetailScreen.route){
-//            CourseDetailScreen()
+//            CourseDetailScreen(course =)
 //        }
-//        composable(Screens.CourseListScreen.route){
-//            CourseListScreen(navController)
-//        }
+        composable(Screens.CourseListScreen.route){
+            CourseListScreen(courseViewModel = CourseViewModel(),navController)
+        }
 
 
         composable(Screens.NotificationScreen.route){

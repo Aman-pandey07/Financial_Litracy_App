@@ -31,12 +31,13 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.navigation.NavController
 import com.aman.financial_litracy_app.R
 import com.aman.financial_litracy_app.viewmodel.CourseViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun CourseListScreen(courseViewModel: CourseViewModel) {
+fun CourseListScreen(courseViewModel: CourseViewModel,navController: NavController) {
     Scaffold (
         topBar = {
             TopAppBar(
@@ -102,11 +103,11 @@ fun CourseListScreen(courseViewModel: CourseViewModel) {
     )
 }
 
-@Preview
-@Composable
-fun CourseListScreenPreview() {
-    CourseListScreen(courseViewModel = CourseViewModel())
-}
+//@Preview
+//@Composable
+//fun CourseListScreenPreview() {
+//    CourseListScreen(courseViewModel = CourseViewModel())
+//}
 
 @Composable
 fun ProductInfoCard(

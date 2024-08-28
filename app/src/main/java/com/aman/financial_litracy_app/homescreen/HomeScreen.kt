@@ -1,6 +1,7 @@
 package com.aman.financial_litracy_app.homescreen
 
 
+import android.graphics.Paint.Style
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -10,7 +11,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -27,22 +27,20 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
 import androidx.compose.material.icons.filled.DateRange
-import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.CardElevation
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
-import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -53,24 +51,24 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.layout.HorizontalAlignmentLine
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.max
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.aman.financial_litracy_app.R
 import com.aman.financial_litracy_app.navigation.Screens
 
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeScreen(){
+fun HomeScreen(navController: NavController){
     Scaffold(
         topBar = {
             TopAppBar(
@@ -80,13 +78,15 @@ fun HomeScreen(){
                 },
                 navigationIcon = {
                     IconButton(onClick = {
-//                        navController.navigate(Screens.LeftNavigationDrawer.route)
+                        navController.navigate(Screens.LeftNavigationDrawer.route)
                     }) {
                         Icon(Icons.Filled.Menu, contentDescription = "Menu")
                     }
                 },
                 actions = {
-                    IconButton(onClick = { /* Handle notification click */ }) {
+                    IconButton(onClick = {
+                        navController.navigate(Screens.NotificationScreen.route)
+                    }) {
                         Icon(Icons.Filled.Notifications, contentDescription = "Notifications")
                     }
                 }
@@ -98,33 +98,41 @@ fun HomeScreen(){
             Column(modifier = Modifier
                 .padding(it)
                 .verticalScroll(rememberScrollState())) {
-                
+
 
                 SearchBar()
 
 
-                val courses = listOf("All Courses","Finance","Account","Business")
-                CourseSelectionRow(courses)
+                val courses = listOf("All Courses","Finance","Account","Business","Balance Sheet")
+                CourseSelectionRow(courses,navController)
 
 
 
 //                Text(text = "Hii this is area to fill honestly i have not done work today just to maintain streak i am pushing rubbish on gothub")
 
-                HorizontalCardList(courses = dummyCourses)
+                HorizontalCardList(courses = dummyCourses,navController)
 
                 Row (
                     modifier = Modifier.padding(horizontal = 10.dp)
                 ){
                     Text(
                         text = "Popular courses",
-                        modifier = Modifier.align(Alignment.CenterVertically))
+                        modifier = Modifier.align(Alignment.CenterVertically),
+                        style = TextStyle(
+                            fontSize = 18.sp,
+                            fontWeight = FontWeight.Bold
+                        )
+                    )
+
                     Spacer(modifier = Modifier.weight(1f))
-                    TextButton(onClick = { /*TODO*/ }) {
+                    TextButton(onClick = {
+                        navController.navigate(Screens.CourseListScreen.route)
+                    }) {
                         Text(text = "See all")
                     }
                 }
 
-                HorizontalCardList1(courses = dummyCourses1)
+                HorizontalCardList1(courses = dummyCourses1,navController)
                 Text(text = "Hii this is area to fill honestly i have not done work today just to maintain streak i am pushing rubbish on gothub")
 
 
@@ -148,24 +156,34 @@ fun HomeScreen(){
                             .padding()
                     ) {
                     BottomAppBarItem(
-                        icon = Icons.Default.Home, // Replace with your home icon
+                        icon = painterResource(id = R.drawable.home_icon), // Replace with your home icon
                         label = "Home", // Replace with your home label
-                        onClick = { /* Handle home click */ }
+                        onClick = {
+                            navController.navigate(Screens.HomeScreen.route)
+
+                        }
                     )
                     BottomAppBarItem(
-                        icon = Icons.Default.DateRange, // Replace with your my courses icon
-                        label = "MyCourses", // Replace with your my courses label
-                        onClick = { /* Handle my courses click */ }
+                        icon = painterResource(id = R.drawable.my_course), // Replace with your my courses icon
+                        label = "My Courses", // Replace with your my courses label
+                        onClick = {
+                            navController.navigate(Screens.CourseListScreen.route)
+
+                        }
                     )
                     BottomAppBarItem(
-                        icon = Icons.Default.PlayArrow, // Replace with your save icon
-                        label = "Save", // Replace with your save label
-                        onClick = { /* Handle save click */ }
+                        icon = painterResource(id = R.drawable.workshop), // Replace with your save icon
+                        label = "Workshop", // Replace with your save label
+                        onClick = {
+                            navController.navigate(Screens.BookAWorkshopScreen.route)
+                        }
                     )
                     BottomAppBarItem(
-                        icon = Icons.Default.AccountCircle, // Replace with your profile icon
+                        icon = painterResource(id = R.drawable.profile), // Replace with your profile icon
                         label = "Profile", // Replace with your profile label
-                        onClick = { /* Handle profile click */ }
+                        onClick = {
+                            navController.navigate(Screens.MyAccountScreen.route)
+                        }
                     )
                 }
                 }
@@ -180,13 +198,14 @@ fun HomeScreen(){
 @Preview
 @Composable
 fun HomeScreenPreview(){
-    HomeScreen()
+val navController = rememberNavController()
+    HomeScreen(navController = navController)
 }
 
 //Bottom app bar items code
 @Composable
 fun BottomAppBarItem(
-    icon: ImageVector,
+    icon: Painter,
     label: String,
     onClick: () -> Unit
 ) {
@@ -235,7 +254,7 @@ fun SearchBar() {
 }
 
 @Composable
-fun CourseSelectionRow(courses: List<String>) {
+fun CourseSelectionRow(courses: List<String>,navController: NavController) {
     var selectedCourse by remember { mutableStateOf<String?>(null) }
 
 
@@ -290,7 +309,7 @@ val dummyCourses = listOf(
         imageResId = R.drawable.course_image01, // Replace with actual image resource
         title = "Web Development Basics",
         price = "$14.99",
-        author = "Michael Johnson",
+        author = "Michael John",
         duration = "4 hours"
     ),
     // Add more courses as needed
@@ -303,15 +322,15 @@ data class Course(
     val duration: String
 )
 @Composable
-fun HorizontalCardList(courses: List<Course>) {
+fun HorizontalCardList(courses: List<Course>,navController: NavController) {
     LazyRow(modifier = Modifier) {
         items(courses) { course ->
-            CourseCard(course)
+            CourseCard(course,navController = navController)
         }
     }
 }
 @Composable
-fun CourseCard(course: Course) {
+fun CourseCard(course: Course,navController: NavController) {
     Card(
         modifier = Modifier
             .padding(horizontal = 10.dp)
@@ -321,7 +340,10 @@ fun CourseCard(course: Course) {
                 width = 1.dp,
                 color = Color.Gray,
                 shape = RoundedCornerShape(10.dp)
-            ),
+            )
+            .clickable {
+                navController.navigate(Screens.CourseListScreen.route)
+            },
         shape = RoundedCornerShape(8.dp),
         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
     ) {
@@ -374,22 +396,23 @@ data class Course1(
     val title: String,
     val price: String,
     val author: String,
-    val duration: String
+    val duration: String,
+
 )
 
 @Composable
-fun HorizontalCardList1(courses: List<Course1>) {
+fun HorizontalCardList1(courses: List<Course1>, navController: NavController) {
     LazyColumn (modifier = Modifier
         .fillMaxWidth()
         .heightIn(max = 300.dp)){
         items(courses) { course ->
-            CourseCard1(course)
+            CourseCard1(course,navController = navController)
         }
     }
 }
 
 @Composable
-fun CourseCard1(course: Course1) {
+fun CourseCard1(course: Course1, navController: NavController) {
     Card(
         modifier = Modifier
             .padding(10.dp)
@@ -399,7 +422,8 @@ fun CourseCard1(course: Course1) {
                 width = 1.dp,
                 color = Color.Gray,
                 shape = RoundedCornerShape(10.dp)
-            ),
+            )
+            .clickable { navController.navigate(Screens.CourseListScreen.route) },
         shape = RoundedCornerShape(15.dp),
         elevation = CardDefaults.cardElevation(defaultElevation = 14.dp)
     ) {

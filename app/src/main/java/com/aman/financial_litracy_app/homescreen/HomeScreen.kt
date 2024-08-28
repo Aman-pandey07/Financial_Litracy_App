@@ -3,6 +3,7 @@ package com.aman.financial_litracy_app.homescreen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -41,6 +42,7 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -49,6 +51,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
@@ -60,9 +63,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.max
+import androidx.compose.ui.unit.sp
 import com.aman.financial_litracy_app.R
-
-
+import com.aman.financial_litracy_app.navigation.Screens
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -72,11 +75,13 @@ fun HomeScreen(){
         topBar = {
             TopAppBar(
                 title = {
-                    Text(text = stringResource(id = R.string.app_name))
+                    Text(text = "Welcome!!")
                     // Replace with your app name
                 },
                 navigationIcon = {
-                    IconButton(onClick = { /* Handle navigation drawer open */ }) {
+                    IconButton(onClick = {
+//                        navController.navigate(Screens.LeftNavigationDrawer.route)
+                    }) {
                         Icon(Icons.Filled.Menu, contentDescription = "Menu")
                     }
                 },
@@ -107,9 +112,14 @@ fun HomeScreen(){
 
                 HorizontalCardList(courses = dummyCourses)
 
-                Row {
-                    Text(text = "Popular courses", modifier = Modifier.weight(1f),)
-                    TextButton(onClick = { /*TODO*/ }, modifier = Modifier.weight(1f)) {
+                Row (
+                    modifier = Modifier.padding(horizontal = 10.dp)
+                ){
+                    Text(
+                        text = "Popular courses",
+                        modifier = Modifier.align(Alignment.CenterVertically))
+                    Spacer(modifier = Modifier.weight(1f))
+                    TextButton(onClick = { /*TODO*/ }) {
                         Text(text = "See all")
                     }
                 }
@@ -201,7 +211,10 @@ fun SearchBar() {
         placeholder = { Text(text = "Search any courses") },
         modifier = Modifier
             .fillMaxWidth()
-            .padding(16.dp),
+            .padding(16.dp)
+            .background(Color.White),
+        shape = RoundedCornerShape(10.dp),
+
         leadingIcon = {
             Icon(
                 painter = painterResource(id = R.drawable.ic_search),
@@ -234,16 +247,20 @@ fun CourseSelectionRow(courses: List<String>) {
             Box(
                 modifier = Modifier
                     .padding(horizontal = 8.dp, vertical = 8.dp)
-                    .background(if (isSelected) Color.Blue else Color.LightGray)
-                    .clickable { selectedCourse = course },
+                    .background(if (isSelected) Color.LightGray else Color.White)
+                    .clickable { selectedCourse = course }
+                    .border(
+                        width = 2.dp,
+                        color = if (isSelected) Color.Black else Color.Gray,
+                        shape = RoundedCornerShape(8.dp)
+                    ),
                 contentAlignment = Alignment.Center,
-
             ) {
                 Text(
                     text = course,
                     color = if (isSelected) Color.White else Color.Black,
                     textAlign = TextAlign.Center,
-                    modifier = Modifier.padding(vertical = 8.dp)
+                    modifier = Modifier.padding(vertical = 8.dp, horizontal = 4.dp)
                 )
             }
         }
@@ -256,21 +273,21 @@ fun CourseSelectionRow(courses: List<String>) {
 
 val dummyCourses = listOf(
     Course(
-        imageResId = R.drawable.author_image, // Replace with actual image resource
+        imageResId = R.drawable.course_image01, // Replace with actual image resource
         title = "Learn Kotlin Programming",
         price = "$19.99",
         author = "John Doe",
         duration = "3 hours"
     ),
     Course(
-        imageResId = R.drawable.author_image, // Replace with actual image resource
+        imageResId = R.drawable.course_image02, // Replace with actual image resource
         title = "Android App Development",
         price = "$24.99",
         author = "Jane Smith",
         duration = "5 hours"
     ),
     Course(
-        imageResId = R.drawable.author_image, // Replace with actual image resource
+        imageResId = R.drawable.course_image01, // Replace with actual image resource
         title = "Web Development Basics",
         price = "$14.99",
         author = "Michael Johnson",
@@ -287,7 +304,7 @@ data class Course(
 )
 @Composable
 fun HorizontalCardList(courses: List<Course>) {
-    LazyRow {
+    LazyRow(modifier = Modifier) {
         items(courses) { course ->
             CourseCard(course)
         }
@@ -297,38 +314,53 @@ fun HorizontalCardList(courses: List<Course>) {
 fun CourseCard(course: Course) {
     Card(
         modifier = Modifier
-            .padding(8.dp)
-            .width(200.dp), // Adjust card width as needed
+            .padding(horizontal = 10.dp)
+            .width(200.dp)
+            .background(Color.White)
+            .border(
+                width = 1.dp,
+                color = Color.Gray,
+                shape = RoundedCornerShape(10.dp)
+            ),
         shape = RoundedCornerShape(8.dp),
         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
     ) {
         Column(
-            modifier = Modifier.padding(16.dp)
+            modifier = Modifier
+                .padding(5.dp)
+                .background(Color.White)
         ) {
             Image(
                 painter = painterResource(id = course.imageResId),
                 contentDescription = null, // Add content description for accessibility
                 modifier = Modifier
                     .fillMaxWidth()
+                    .padding(horizontal = 5.dp)
                     .height(150.dp),
                 contentScale = ContentScale.Crop
             )
-            Spacer(modifier = Modifier.height(8.dp))
-            Text(
-                text = course.title,
-                fontWeight = FontWeight.Bold
-            )
-            Text(text = course.price, color = Color.Blue)
+            Spacer(modifier = Modifier.height(4.dp))
+
+                Text(
+                    text = course.title,
+                    fontWeight = FontWeight.Bold, fontSize =14.sp, maxLines = 1
+                )
+
+
+
+
             Row(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Image(
-                    painter = painterResource(id = R.drawable.author_image), // Replace with actual author image
+                    painter = painterResource(id = R.drawable.instructor_image), // Replace with actual author image
                     contentDescription = null,
                     modifier = Modifier.size(32.dp)
                 )
-                Spacer(modifier = Modifier.width(8.dp))
+                Spacer(modifier = Modifier.width(10.dp))
                 Text(text = course.author)
+                Spacer(modifier = Modifier.width(10.dp))
+                Text(text = course.price, color = Color.Blue)
             }
             Text(text = course.duration)
         }
@@ -360,19 +392,33 @@ fun HorizontalCardList1(courses: List<Course1>) {
 fun CourseCard1(course: Course1) {
     Card(
         modifier = Modifier
-            .padding(15.dp)
+            .padding(10.dp)
             .fillMaxWidth()
-            .height(100.dp), // Adjust card width as needed
+            .height(100.dp)
+            .border(
+                width = 1.dp,
+                color = Color.Gray,
+                shape = RoundedCornerShape(10.dp)
+            ),
         shape = RoundedCornerShape(15.dp),
         elevation = CardDefaults.cardElevation(defaultElevation = 14.dp)
     ) {
 
-        Row {
+        Row (
+            modifier = Modifier
+                .padding(5.dp)
+                .background(Color.White)
+        ){
             course.imageResId?.let {
                 Image(
                     painter = painterResource(id = it),
                     contentDescription = null, // Add content description for accessibility
-                    modifier = Modifier.padding(10.dp),
+                    modifier = Modifier
+                        .padding(5.dp)
+                        .align(Alignment.CenterVertically)
+                        .size(width = 100.dp, height = 100.dp)
+                        .clip(RoundedCornerShape(10.dp)),
+
                     contentScale = ContentScale.Crop
                 )
             }
@@ -380,14 +426,31 @@ fun CourseCard1(course: Course1) {
 //            Spacer(modifier = Modifier.height(8.dp))
             Column(
                 modifier = Modifier
-                    .padding(10.dp)
-                    .fillMaxSize()
+                    .padding(5.dp)
+                    .fillMaxSize(),
             ) {
-                Text(
-                    text = course.title,
-                    fontWeight = FontWeight.Bold
-                )
-                Text(text = course.price, color = Color.Blue)
+                Row() {
+                    Text(
+                        text = course.title,
+                        fontWeight = FontWeight.Bold,
+                        maxLines = 1,
+                        fontSize = 14.sp,
+                        modifier = Modifier.weight(1f)
+                    )
+                    Text(text = course.price, color = Color.Blue)
+                }
+
+                Row(
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    Image(
+                        painter = painterResource(id = R.drawable.instructor_image), // Replace with actual author image
+                        contentDescription = null,
+                        modifier = Modifier.size(32.dp)
+                    )
+                    Spacer(modifier = Modifier.width(10.dp))
+                    Text(text = course.author)
+                }
                 Row(
                     verticalAlignment = Alignment.CenterVertically
                 ) {
@@ -404,28 +467,28 @@ fun CourseCard1(course: Course1) {
 
 val dummyCourses1 = listOf(
     Course1(
-        imageResId = R.drawable.author_image, // Replace with actual image resource
+        imageResId = R.drawable.cp01, // Replace with actual image resource
         title = "Kotlin Fundamentals",
         price = "$19.99",
         author = "Alex Smith",
         duration = "3 hours"
     ),
     Course1(
-        imageResId = R.drawable.author_image, // Replace with actual image resource
+        imageResId = R.drawable.cp02, // Replace with actual image resource
         title = "Android Jetpack Compose",
         price = "$24.99",
         author = "Emily Johnson",
         duration = "5 hours"
     ),
     Course1(
-        imageResId = R.drawable.author_image,
+        imageResId = R.drawable.cp03,
         title = "Database Design", // Example without image
         price = "$14.99",
         author = "David Brown",
         duration = "4 hours"
     ),
     Course1(
-        imageResId = R.drawable.author_image, // Replace with actual image resource
+        imageResId = R.drawable.cp01, // Replace with actual image resource
         title = "Machine Learning Basics",
         price = "$29.99",
         author = "Sarah Lee",

@@ -36,7 +36,7 @@ import com.aman.financial_litracy_app.navigation.Screens
 
 @Composable
 fun SelectClass(
-//    navController: NavController
+    navController: NavController
 ){
 
     data class ClassItem(val name: String, val iconResId: Int)
@@ -103,7 +103,7 @@ fun SelectClass(
 
         Button(
             onClick = {
-//                navController.navigate(Screens.HomeScreen.route)
+                navController.navigate(Screens.HomeScreen.route)
             /* Handle next button click */ },
             modifier = Modifier.fillMaxWidth(),
             shape = RoundedCornerShape(8.dp)
@@ -137,8 +137,8 @@ fun SelectClass(
         }
 }
 
-@Preview(showBackground = true)
-@Composable
-fun SelectClassPreview(){
-    SelectClass()
-}
+//@Preview(showBackground = true)
+//@Composable
+//fun SelectClassPreview(){
+//    SelectClass()
+//}

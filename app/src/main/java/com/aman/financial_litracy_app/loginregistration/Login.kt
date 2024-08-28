@@ -46,7 +46,7 @@ import com.aman.financial_litracy_app.navigation.Screens
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun Login(
-//    navController: NavController
+    navController: NavController
 ) {
     val emailState = remember{ mutableStateOf("") }
     val passwordState = remember{ mutableStateOf("") }
@@ -154,7 +154,7 @@ fun Login(
             Spacer(modifier = Modifier.height(16.dp))
             Button(
                 onClick = {
-//                navController.navigate(Screens.SignupStart.route)
+                navController.navigate(Screens.SignupStart.route)
                 },
                 modifier = Modifier
                     .fillMaxWidth()
@@ -198,8 +198,8 @@ fun Login(
 
 
 }
-@Preview(showBackground = true)
-@Composable
-fun LoginPrevi(){
-    Login()
-}
+//@Preview(showBackground = true)
+//@Composable
+//fun LoginPrevi(){
+//    Login(
+//}

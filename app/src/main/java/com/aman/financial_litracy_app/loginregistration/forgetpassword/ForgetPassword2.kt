@@ -34,7 +34,7 @@ import com.aman.financial_litracy_app.navigation.Screens
 
 @Composable
 fun ForgetPassword2(
-//    navController: NavController
+    navController: NavController
 ) {
     var verificationCode by remember { mutableStateOf("") }
 
@@ -82,7 +82,7 @@ fun ForgetPassword2(
                     Spacer(modifier = Modifier.height(32.dp))
                     Button(
                         onClick = {
-                            // Handle submit
+                            navController.navigate(Screens.ForgetPassword3.route)
                         },
                         modifier = Modifier
                             .fillMaxWidth()
@@ -120,8 +120,8 @@ fun ForgetPassword2(
                 }
             }
 }
-@Preview(showBackground = true)
-@Composable
-fun fp2(){
-    ForgetPassword2()
-}
+//@Preview(showBackground = true)
+//@Composable
+//fun fp2(){
+//    ForgetPassword2()
+//}

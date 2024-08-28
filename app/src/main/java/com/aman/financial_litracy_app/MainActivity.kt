@@ -10,6 +10,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.aman.financial_litracy_app.courses.CourseListScreen
+import com.aman.financial_litracy_app.homescreen.HomeScreen
 import com.aman.financial_litracy_app.homescreen.NotificationScreen
 import com.aman.financial_litracy_app.leftnavigationdrawer.AboutUsScreen
 import com.aman.financial_litracy_app.leftnavigationdrawer.BookAWorkshopScreen
@@ -36,7 +37,7 @@ class MainActivity : ComponentActivity() {
 //                Surface(color = MaterialTheme.colorScheme.background) {
 //                    App()
 //                }
-                MyAccountScreen()
+                HomeScreen()
             }
         }
     }

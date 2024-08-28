@@ -26,6 +26,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.BlendMode.Companion.Screen
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
@@ -37,7 +38,7 @@ import com.aman.financial_litracy_app.navigation.Screens
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ForgetPassword1(
-//    navController: NavController
+    navController: NavController
 ) {
     var email by remember { mutableStateOf("") }
 
@@ -81,7 +82,7 @@ fun ForgetPassword1(
             Spacer(modifier = Modifier.height(32.dp))
             Button(
                 onClick = {
-                    // Handle submit
+                    navController.navigate(Screens.ForgetPassword2.route)
                 },
                 modifier = Modifier
                     .fillMaxWidth()
@@ -115,8 +116,8 @@ fun ForgetPassword1(
     }
 
 }
-@Preview(showBackground = true)
-@Composable
-fun fp1(){
-    ForgetPassword1()
-}
+//@Preview(showBackground = true)
+//@Composable
+//fun fp1(){
+//    ForgetPassword1()
+//}

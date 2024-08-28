@@ -11,4 +11,15 @@ sealed class Screens(val route: String) {
     object SelectClass : Screens("select_class")
     object HomeScreen : Screens("home_screen")
     object OnboardingScreen : Screens("onboarding_screen")
+    object LeftNavigationDrawer : Screens("left_navigation_drawer")
+    object CourseDetailScreen :Screens("course_detailed_screen")
+    object CourseListScreen :Screens("course_list_screen")
+    object NotificationScreen :Screens("notification_screen")
+    object AboutUsScreen :Screens("about_us_screen")
+    object BookAWorkshopScreen :Screens("book_a_workshop_screen")
+    object ContactUsScreen :Screens("contact_us_screen")
+    object MyAccountScreen :Screens("my_account_screen")
+    object TermsAndConditionScreen :Screens("my_account_screen")
+    object PaymentScreen :Screens("payment_screen")
+
 }

@@ -46,7 +46,7 @@ import com.aman.financial_litracy_app.navigation.Screens
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SignupStart(
-//    navController: NavController
+    navController: NavController
     ) {
 
     val fullName = remember{ mutableStateOf("") }
@@ -149,7 +149,7 @@ fun SignupStart(
             Spacer(modifier = Modifier.height(16.dp))
             Button(
                 onClick = {
-//                navController.navigate(Screens.SignupStart.route)
+                navController.navigate(Screens.SignupStart.route)
                 },
                 modifier = Modifier
                     .fillMaxWidth()
@@ -195,8 +195,8 @@ fun SignupStart(
 
 
 
-@Preview(showBackground = true)
-@Composable
-fun SignStartPreview(){
-    SignupStart()
-}
+//@Preview(showBackground = true)
+//@Composable
+//fun SignStartPreview(){
+//    SignupStart()
+//}

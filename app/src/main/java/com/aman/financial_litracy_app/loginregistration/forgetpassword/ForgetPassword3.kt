@@ -51,7 +51,7 @@ import com.aman.financial_litracy_app.R
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ForgetPassword3(
-//    navController: NavController
+    navController: NavController
 ) {
     var newPassword by remember { mutableStateOf("") }
     var confirmPassword by remember { mutableStateOf("") }
@@ -170,7 +170,7 @@ fun ForgetPassword3(
             Spacer(modifier = Modifier.height(32.dp))
             Button(
                 onClick = {
-                    // Handle submit
+                    navController.navigate(Screens.ForgetPassword4.route)
                 },
                 modifier = Modifier
                     .fillMaxWidth()
@@ -289,8 +289,8 @@ fun ForgetPassword3(
 }
 
 
-@Preview(showBackground = true)
-@Composable
-fun fp3(){
-    ForgetPassword3()
-}
+//@Preview(showBackground = true)
+//@Composable
+//fun fp3(){
+//    ForgetPassword3()
+//}

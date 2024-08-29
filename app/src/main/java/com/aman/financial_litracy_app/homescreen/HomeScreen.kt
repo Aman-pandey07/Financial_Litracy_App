@@ -309,7 +309,7 @@ val dummyCourses = listOf(
         imageResId = R.drawable.course_image01, // Replace with actual image resource
         title = "Web Development Basics",
         price = "$14.99",
-        author = "Michael John",
+        author = "Mic John",
         duration = "4 hours"
     ),
     // Add more courses as needed
@@ -342,7 +342,7 @@ fun CourseCard(course: Course,navController: NavController) {
                 shape = RoundedCornerShape(10.dp)
             )
             .clickable {
-                navController.navigate(Screens.CourseListScreen.route)
+                navController.navigate(Screens.CourseDetailScreen.route)
             },
         shape = RoundedCornerShape(8.dp),
         elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
@@ -423,7 +423,7 @@ fun CourseCard1(course: Course1, navController: NavController) {
                 color = Color.Gray,
                 shape = RoundedCornerShape(10.dp)
             )
-            .clickable { navController.navigate(Screens.CourseListScreen.route) },
+            .clickable { navController.navigate(Screens.CourseDetailScreen.route) },
         shape = RoundedCornerShape(15.dp),
         elevation = CardDefaults.cardElevation(defaultElevation = 14.dp)
     ) {

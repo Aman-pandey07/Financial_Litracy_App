@@ -5,7 +5,6 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.aman.financial_litracy_app.courses.Course
 import com.aman.financial_litracy_app.courses.CourseDetailScreen
 import com.aman.financial_litracy_app.courses.CourseListScreen
 import com.aman.financial_litracy_app.homescreen.HomeScreen
@@ -16,10 +15,10 @@ import com.aman.financial_litracy_app.leftnavigationdrawer.ContactUsScreen
 import com.aman.financial_litracy_app.leftnavigationdrawer.LeftNavigationDrawer
 import com.aman.financial_litracy_app.leftnavigationdrawer.MyAccountScreen
 import com.aman.financial_litracy_app.leftnavigationdrawer.TermsAndConditionScreen
-import com.aman.financial_litracy_app.loginregistration.Login
-import com.aman.financial_litracy_app.loginregistration.SelectClass
-import com.aman.financial_litracy_app.loginregistration.SignupComplete
-import com.aman.financial_litracy_app.loginregistration.SignupStart
+import com.aman.financial_litracy_app.loginregistration.login.Login
+import com.aman.financial_litracy_app.loginregistration.signup.SelectClass
+import com.aman.financial_litracy_app.loginregistration.signup.SignupComplete
+import com.aman.financial_litracy_app.loginregistration.signup.SignupStart
 import com.aman.financial_litracy_app.loginregistration.forgetpassword.ForgetPassword1
 import com.aman.financial_litracy_app.loginregistration.forgetpassword.ForgetPassword2
 import com.aman.financial_litracy_app.loginregistration.forgetpassword.ForgetPassword3
@@ -78,9 +77,9 @@ fun App() {
 
 
 
-//        composable(Screens.CourseDetailScreen.route){
-//            CourseDetailScreen(course =)
-//        }
+        composable(Screens.CourseDetailScreen.route){
+            CourseDetailScreen(navController)
+        }
         composable(Screens.CourseListScreen.route){
             CourseListScreen(courseViewModel = CourseViewModel(),navController)
         }

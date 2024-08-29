@@ -1,4 +1,4 @@
-package com.aman.financial_litracy_app.loginregistration
+package com.aman.financial_litracy_app.loginregistration.signup
 
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text

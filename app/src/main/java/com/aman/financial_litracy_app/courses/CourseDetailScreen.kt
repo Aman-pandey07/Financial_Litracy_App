@@ -57,11 +57,18 @@ data class Lesson(
     val title: String,
     val duration: Int
 )
+val lessonsList = listOf(
+Lesson("Allowances and Spending Plans", 10),
+Lesson("Money Responsibility", 15),
+Lesson("Saving and Investing", 20),
+Lesson("Comparison Shopping", 20),
+Lesson("Trends In Financial Literacy", 20),
+)
 
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun CourseDetailScreen(course: Course,navController: NavController) {
+fun CourseDetailScreen(navController: NavController) {
 
     Scaffold(
         topBar = {
@@ -90,7 +97,8 @@ fun CourseDetailScreen(course: Course,navController: NavController) {
             ) {
                 Image(
                     painter = painterResource(id = R.drawable.course_detail_screen), // Replace with your image resource
-                    contentDescription = course.title,
+                    contentDescription =null,
+//                    course.title,
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(200.dp)
@@ -101,12 +109,14 @@ fun CourseDetailScreen(course: Course,navController: NavController) {
 //                        .padding(vertical = 16.dp)
 //                ) {
                     Text(
-                        text = "${course.duration} • ${course.lessons} Lessons",
+                        text = "2 hours 15 min.15 Lessions",
+//                        "${course.duration} • ${course.lessons} Lessons",
                         style = MaterialTheme.typography.labelSmall,
                         modifier = Modifier.padding(vertical = 5.dp)
                     )
                     Text(
-                        text = course.title,
+                        text = "Finance Course",
+//                        course.title,
                         style = MaterialTheme.typography.titleMedium,
                         fontWeight = FontWeight.Bold,
                         modifier = Modifier.padding(vertical = 5.dp)
@@ -120,10 +130,13 @@ fun CourseDetailScreen(course: Course,navController: NavController) {
                             modifier = Modifier.size(32.dp)
                         )
                         Spacer(modifier = Modifier.width(10.dp))
-                        Text(text = "By ${course.instructor}")
+                        Text(text ="Vivian Neiro"
+//                        "By ${course.instructor}"
+                        )
                         Spacer(modifier = Modifier.weight(1f))
                         Text(
-                            text = "$${course.price}/for lifetime",
+                            text ="$4.99/for lifetime",
+//                            "$${course.price}/for lifetime",
                             style = MaterialTheme.typography.labelSmall,
                             color = MaterialTheme.colorScheme.primary
                         )
@@ -133,7 +146,8 @@ fun CourseDetailScreen(course: Course,navController: NavController) {
 
                 // Course description
                 Text(
-                    text = course.description,
+                    text ="Description...",
+//                    course.description,
                     style = MaterialTheme.typography.titleMedium,
                     modifier = Modifier.padding(vertical = 16.dp)
                 )
@@ -145,12 +159,13 @@ fun CourseDetailScreen(course: Course,navController: NavController) {
 
                 // Lessons section
                 Text(
-                    text = "Lessons (${course.lessons} Videos)",
+                    text ="Lessons 15 Videos)",
+//                    "Lessons (${course.lessons} Videos)",
                     style = MaterialTheme.typography.titleMedium,
                     modifier = Modifier.padding(vertical = 16.dp)
                 )
                 LazyColumn(modifier = Modifier.height(300.dp)) {
-                    items(course.lessonsList) { lesson ->
+                    items(lessonsList) { lesson ->
                         LessonItem(lesson)
                     }
                 }
@@ -209,20 +224,5 @@ fun LessonItem(lesson: Lesson) {
 //@Preview(showBackground = true)
 //@Composable
 //fun CourseDetailScreenPreview(){
-//    CourseDetailScreen(course = Course(
-//        title = "Finance Course",
-//        duration = "2 hours 15 min",
-//        lessons = 15,
-//        instructor = "Vivian Neiro",
-//        price = 4.99,
-//        description = "Description...",
-//        image = R.drawable.course_image,
-//        lessonsList = listOf(
-//            Lesson("Allowances and Spending Plans", 10),
-//            Lesson("Money Responsibility", 15),
-//            Lesson("Saving and Investing", 20),
-//            Lesson("Comparison Shopping", 20),
-//            Lesson("Trends In Financial Literacy", 20),
-//        )
-//    ))
+//    CourseDetailScreen()
 //}

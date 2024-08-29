@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1061074779120",
+    "project_id": "financial-litracy-app",
+    "storage_bucket": "financial-litracy-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1061074779120:android:49615744255c8b51173b35",
+        "android_client_info": {
+          "package_name": "com.aman.financial_litracy_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDeeMkqrfPEPLmu3ZfZQPZDKFgRablD1wc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

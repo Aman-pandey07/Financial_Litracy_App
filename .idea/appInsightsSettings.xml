@@ -8,10 +8,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
+                  <option name="appId" value="com.aman.financial_litracy_app" />
+                  <option name="mobileSdkAppId" value="1:1061074779120:android:49615744255c8b51173b35" />
+                  <option name="projectId" value="financial-litracy-app" />
+                  <option name="projectNumber" value="1061074779120" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />

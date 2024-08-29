@@ -11,6 +11,9 @@
       <SelectionState runConfigName="LeftNavigationDrawerPreview">
         <option name="selectionMode" value="DROPDOWN" />
       </SelectionState>
+      <SelectionState runConfigName="Previewrp02">
+        <option name="selectionMode" value="DROPDOWN" />
+      </SelectionState>
     </selectionStates>
   </component>
 </project>

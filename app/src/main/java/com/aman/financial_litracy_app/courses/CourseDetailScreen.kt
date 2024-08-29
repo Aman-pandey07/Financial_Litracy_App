@@ -40,6 +40,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.aman.financial_litracy_app.R
 import com.aman.financial_litracy_app.leftnavigationdrawer.ContactInfoCard
+import com.aman.financial_litracy_app.navigation.Screens
 
 
 data class Course(
@@ -82,7 +83,9 @@ fun CourseDetailScreen(navController: NavController) {
                     )
                 },
                 navigationIcon = {
-                    IconButton(onClick = { /*TODO*/ }) {
+                    IconButton(onClick = {
+                        navController.popBackStack()
+                    }) {
                         Icon(imageVector = Icons.AutoMirrored.Filled.KeyboardArrowLeft, contentDescription ="Back Button" )
                     }
                 }
@@ -173,7 +176,9 @@ fun CourseDetailScreen(navController: NavController) {
                 // Enroll button
                 Spacer(modifier = Modifier.weight(1f))
                 Button(
-                    onClick = { /* Handle enroll action */ },
+                    onClick = {
+                        navController.navigate(Screens.PaymentScreen.route)
+                    },
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(vertical = 16.dp)

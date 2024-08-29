@@ -27,10 +27,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.aman.financial_litracy_app.R
+import com.aman.financial_litracy_app.navigation.Screens
 
 @Composable
-fun LeftNavigationDrawer() {
+fun LeftNavigationDrawer(navController: NavController) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -45,6 +47,9 @@ fun LeftNavigationDrawer() {
                 .fillMaxWidth()
                 .padding(vertical = 16.dp)
                 .background(color = MaterialTheme.colorScheme.primaryContainer)
+                .clickable {
+                    navController.navigate(Screens.MyAccountScreen.route)
+                }
         ) {
             // Profile image
             Image(
@@ -80,20 +85,19 @@ fun LeftNavigationDrawer() {
                 .fillMaxWidth()
                 .padding(vertical = 16.dp)
         ) {
-            NavigationItem(icon = R.drawable.home_icon, text = "Home", onClick = { /* Handle home click */ })
-            NavigationItem(icon = R.drawable.book_icon, text = "Book A Workshop",onClick = { /* Handle home click */ })
-            NavigationItem(icon = R.drawable.courses_icon, text = "Courses",onClick = { /* Handle home click */ })
-            NavigationItem(icon = R.drawable.about_us_icon, text = "About Us",onClick = { /* Handle home click */ })
-            NavigationItem(icon = R.drawable.contact_us_icon, text = "Contact Us",onClick = { /* Handle home click */ })
-            NavigationItem(icon = R.drawable.contact_us_icon, text = "Contact Us",onClick = { /* Handle home click */ })
-            NavigationItem(icon = R.drawable.terms_and_conditions_icon, text = "Terms and Conditions",onClick = { /* Handle home click */ })
-            NavigationItem(icon = R.drawable.notification_icon, text = "Notification",onClick = { /* Handle home click */ })
-            NavigationItem(icon = R.drawable.my_account_icon, text = "My Account",onClick = { /* Handle home click */ })
-            NavigationItem(icon = R.drawable.reset_password_icon, text = "Reset password",onClick = { /* Handle home click */ })
+            NavigationItem(icon = R.drawable.home_icon, text = "Home", onClick = { navController.navigate(Screens.HomeScreen.route) })
+            NavigationItem(icon = R.drawable.book_icon, text = "Book A Workshop",onClick = { navController.navigate(Screens.BookAWorkshopScreen.route) })
+            NavigationItem(icon = R.drawable.courses_icon, text = "Courses",onClick = { navController.navigate(Screens.CourseListScreen.route) })
+            NavigationItem(icon = R.drawable.about_us_icon, text = "About Us",onClick = { navController.navigate(Screens.AboutUsScreen.route) })
+            NavigationItem(icon = R.drawable.contact_us_icon, text = "Contact Us",onClick = { navController.navigate(Screens.ContactUsScreen.route)})
+            NavigationItem(icon = R.drawable.terms_and_conditions_icon, text = "Terms and Conditions",onClick = { navController.navigate(Screens.TermsAndConditionScreen.route) })
+            NavigationItem(icon = R.drawable.notification_icon, text = "Notification",onClick = { navController.navigate(Screens.NotificationScreen.route) })
+            NavigationItem(icon = R.drawable.my_account_icon, text = "My Account",onClick = { navController.navigate(Screens.MyAccountScreen.route) })
+            NavigationItem(icon = R.drawable.reset_password_icon, text = "Reset password",onClick = {navController.navigate(Screens.ResetPassword.route) })
 
             Spacer(modifier = Modifier.weight(1f))
             HorizontalDivider()
-            NavigationItem(icon = R.drawable.logout_icon, text = "Logout",onClick = { /* Handle home click */ })
+            NavigationItem(icon = R.drawable.logout_icon, text = "Logout",onClick = { navController.navigate(Screens.Login.route) })
         }
     }
 }
@@ -102,18 +106,18 @@ fun LeftNavigationDrawer() {
 
 
 
-@Preview(showBackground = true)
-@Composable
-fun LeftNavigationDrawerPreview() {
-    LeftNavigationDrawer()
-}
+//@Preview(showBackground = true)
+//@Composable
+//fun LeftNavigationDrawerPreview() {
+//    LeftNavigationDrawer()
+//}
 @Composable
 fun NavigationItem(icon: Int, text: String,onClick: () -> Unit ) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
             .padding(vertical = 8.dp)
-            .clickable {onClick }
+            .clickable {onClick() }
             .size(40.dp)
     ) {
 

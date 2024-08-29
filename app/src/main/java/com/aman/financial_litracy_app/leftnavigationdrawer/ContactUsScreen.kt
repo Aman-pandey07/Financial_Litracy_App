@@ -36,11 +36,12 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.aman.financial_litracy_app.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ContactUsScreen() {
+fun ContactUsScreen(navController: NavController) {
     Scaffold(
         topBar = {
             TopAppBar(
@@ -53,7 +54,9 @@ fun ContactUsScreen() {
                     )
                 },
                 navigationIcon = {
-                    IconButton(onClick = { /*TODO*/ }) {
+                    IconButton(onClick = {
+                        navController.popBackStack()
+                    }) {
                         Icon(imageVector = Icons.AutoMirrored.Filled.KeyboardArrowLeft, contentDescription ="Back Button" )
                     }
                 }
@@ -71,11 +74,11 @@ fun ContactUsScreen() {
 
 }
 
-@Preview(showBackground = true)
-@Composable
-fun ContactUsScreenPreview() {
-    ContactUsScreen()
-}
+//@Preview(showBackground = true)
+//@Composable
+//fun ContactUsScreenPreview() {
+//    ContactUsScreen()
+//}
 
 
 @Composable

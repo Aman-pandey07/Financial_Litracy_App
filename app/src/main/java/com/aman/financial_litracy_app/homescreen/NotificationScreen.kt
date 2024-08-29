@@ -34,11 +34,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.aman.financial_litracy_app.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun NotificationScreen() {
+fun NotificationScreen(navController: NavController) {
     Scaffold(
         topBar = {
             TopAppBar(
@@ -51,7 +52,9 @@ fun NotificationScreen() {
                     )
                 },
                 navigationIcon = {
-                    IconButton(onClick = { /*TODO*/ }) {
+                    IconButton(onClick = {
+                        navController.popBackStack()
+                    }) {
                         Icon(imageVector = Icons.AutoMirrored.Filled.KeyboardArrowLeft, contentDescription ="Back Button" )
                     }
                 }
@@ -88,11 +91,11 @@ fun NotificationScreen() {
     )
 }
 
-@Preview
-@Composable
-fun NotificationScreenPreview(){
-    NotificationScreen()
-}
+//@Preview
+//@Composable
+//fun NotificationScreenPreview(){
+//    NotificationScreen()
+//}
 
 
 @Composable

@@ -50,7 +50,9 @@ fun CourseListScreen(courseViewModel: CourseViewModel,navController: NavControll
                     )
                 },
                 navigationIcon = {
-                    IconButton(onClick = { /*TODO*/ }) {
+                    IconButton(onClick = {
+                        navController.popBackStack()
+                    }) {
                         Icon(imageVector = Icons.AutoMirrored.Filled.KeyboardArrowLeft, contentDescription ="Back Button" )
                     }
                 }
@@ -171,3 +173,4 @@ fun AllCoursesHeader() {
         )
     }
 }
+

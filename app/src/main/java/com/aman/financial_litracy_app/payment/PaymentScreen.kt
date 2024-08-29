@@ -46,12 +46,13 @@ import androidx.compose.ui.text.style.TextDirection.Companion.Content
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.aman.financial_litracy_app.R
 import com.google.rpc.Help
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun PaymentScreen() {
+fun PaymentScreen(navController: NavController) {
 
     Scaffold (
         topBar = {
@@ -65,7 +66,9 @@ fun PaymentScreen() {
                         )
                         },
                 navigationIcon = {
-                    IconButton(onClick = { /*TODO*/ }) {
+                    IconButton(onClick = {
+                        navController.popBackStack()
+                    }) {
                         Icon(imageVector = Icons.AutoMirrored.Filled.KeyboardArrowLeft, contentDescription ="Back Button" )
                     }
                 }
@@ -233,11 +236,11 @@ fun PaymentScreen() {
     )
 }
 
-@Preview(showBackground = true)
-@Composable
-fun PaymentScreenPrivi(){
-    PaymentScreen()
-}
+//@Preview(showBackground = true)
+//@Composable
+//fun PaymentScreenPrivi(){
+//    PaymentScreen()
+//}
 @Composable
 fun ProductInfoCard(
     productName: String,

@@ -1,7 +1,14 @@
 
 
 
+import android.content.Context
+import android.content.SharedPreferences
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -15,6 +22,9 @@ import com.aman.financial_litracy_app.leftnavigationdrawer.ContactUsScreen
 import com.aman.financial_litracy_app.leftnavigationdrawer.LeftNavigationDrawer
 import com.aman.financial_litracy_app.leftnavigationdrawer.MyAccountScreen
 import com.aman.financial_litracy_app.leftnavigationdrawer.TermsAndConditionScreen
+import com.aman.financial_litracy_app.leftnavigationdrawer.resetpassword.EmailOtpVerification
+import com.aman.financial_litracy_app.leftnavigationdrawer.resetpassword.ResetPassword02
+import com.aman.financial_litracy_app.leftnavigationdrawer.resetpassword.ResetPasswordScreen
 import com.aman.financial_litracy_app.loginregistration.login.Login
 import com.aman.financial_litracy_app.loginregistration.signup.SelectClass
 import com.aman.financial_litracy_app.loginregistration.signup.SignupComplete
@@ -34,10 +44,15 @@ import com.aman.financial_litracy_app.viewmodel.CourseViewModel
 fun App() {
 
     val navController = rememberNavController()
+    val context = LocalContext.current
+
+// Load onboarding status from SharedPreferences
+    val sharedPrefs: SharedPreferences = context.getSharedPreferences("app_prefs", Context.MODE_PRIVATE)
+    var showOnboarding by remember { mutableStateOf(sharedPrefs.getBoolean("onboarding_complete", false)) }
 
     NavHost(
         navController = navController,
-        startDestination =Routes.OnboardingScreen
+        startDestination =if (showOnboarding) Routes.OnboardingScreen else Routes.Login
     ) {
         composable(Screens.Login.route) {
             Login(navController)
@@ -68,11 +83,14 @@ fun App() {
         }
         composable(Screens.OnboardingScreen.route) {
             OnboardingScreen(navController) {
-                navController.navigate(Routes.Login)
+                sharedPrefs.edit().putBoolean("onboarding_complete", true).apply()
+                navController.navigate(Routes.Login) {
+                    popUpTo(Routes.OnboardingScreen) { inclusive = true }
+                }
             }
         }
         composable(Screens.LeftNavigationDrawer.route){
-            LeftNavigationDrawer()
+            LeftNavigationDrawer(navController)
         }
 
 
@@ -86,25 +104,34 @@ fun App() {
 
 
         composable(Screens.NotificationScreen.route){
-            NotificationScreen()
+            NotificationScreen(navController)
         }
         composable(Screens.AboutUsScreen.route){
-            AboutUsScreen()
+            AboutUsScreen(navController)
         }
         composable(Screens.BookAWorkshopScreen.route){
-            BookAWorkshopScreen()
+            BookAWorkshopScreen(navController)
         }
         composable(Screens.ContactUsScreen.route){
-            ContactUsScreen()
+            ContactUsScreen(navController)
         }
         composable(Screens.MyAccountScreen.route){
-            MyAccountScreen()
+            MyAccountScreen(navController)
         }
         composable(Screens.TermsAndConditionScreen.route){
-            TermsAndConditionScreen()
+            TermsAndConditionScreen(navController)
         }
         composable(Screens.PaymentScreen.route){
-            PaymentScreen()
+            PaymentScreen(navController)
+        }
+        composable(Screens.EmailOtpVerification.route){
+            EmailOtpVerification(navController)
+        }
+        composable(Screens.ResetPassword.route){
+            ResetPasswordScreen(navController)
+        }
+        composable(Screens.ResetPassword02.route){
+            ResetPassword02(navController)
         }
 
 

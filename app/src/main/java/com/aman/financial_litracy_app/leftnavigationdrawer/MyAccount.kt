@@ -38,11 +38,13 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.aman.financial_litracy_app.R
+import com.aman.financial_litracy_app.navigation.Screens
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MyAccountScreen(modifier: Modifier = Modifier) {
+fun MyAccountScreen(navController:NavController) {
     Scaffold(
         topBar = {
             TopAppBar(
@@ -55,7 +57,9 @@ fun MyAccountScreen(modifier: Modifier = Modifier) {
                     )
                 },
                 navigationIcon = {
-                    IconButton(onClick = { /*TODO*/ }) {
+                    IconButton(onClick = {
+                        navController.popBackStack()
+                    }) {
                         Icon(imageVector = Icons.AutoMirrored.Filled.KeyboardArrowLeft, contentDescription ="Back Button" )
                     }
                 }
@@ -168,6 +172,7 @@ fun MyAccountScreen(modifier: Modifier = Modifier) {
                 Button(
                     onClick = {
                         // Handle submit
+                        navController.navigate(Screens.Login.route)
                     },
                     modifier = Modifier
                         .fillMaxWidth()
@@ -187,11 +192,11 @@ fun MyAccountScreen(modifier: Modifier = Modifier) {
     )
 }
 
-@Preview
-@Composable
-fun MyAccountPreview(modifier: Modifier = Modifier) {
-    MyAccountScreen()
-}
+//@Preview
+//@Composable
+//fun MyAccountPreview(modifier: Modifier = Modifier) {
+//    MyAccountScreen()
+//}
 
 @Composable
 fun TextHeader(text: String) {

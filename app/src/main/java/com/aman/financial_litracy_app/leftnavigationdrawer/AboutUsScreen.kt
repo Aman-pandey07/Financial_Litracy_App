@@ -26,10 +26,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun AboutUsScreen() {
+fun AboutUsScreen(navController: NavController) {
     Scaffold(
         topBar = {
             TopAppBar(
@@ -42,7 +43,9 @@ fun AboutUsScreen() {
                     )
                 },
                 navigationIcon = {
-                    IconButton(onClick = { /*TODO*/ }) {
+                    IconButton(onClick = {
+                        navController.popBackStack()
+                    }) {
                         Icon(imageVector = Icons.AutoMirrored.Filled.KeyboardArrowLeft, contentDescription ="Back Button" )
                     }
                 }
@@ -84,11 +87,11 @@ fun AboutUsScreen() {
     )
 }
 
-@Preview(showBackground = true)
-@Composable
-fun AboutUsScreenPreview() {
-    AboutUsScreen()
-}
+//@Preview(showBackground = true)
+//@Composable
+//fun AboutUsScreenPreview() {
+//    AboutUsScreen()
+//}
 
 @Composable
 fun InfoCard(title: String, content: String){

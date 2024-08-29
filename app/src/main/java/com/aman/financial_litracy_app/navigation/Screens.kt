@@ -19,7 +19,10 @@ sealed class Screens(val route: String) {
     object BookAWorkshopScreen :Screens("book_a_workshop_screen")
     object ContactUsScreen :Screens("contact_us_screen")
     object MyAccountScreen :Screens("my_account_screen")
-    object TermsAndConditionScreen :Screens("my_account_screen")
+    object TermsAndConditionScreen :Screens("terms_and_condition_screen")
     object PaymentScreen :Screens("payment_screen")
+    object EmailOtpVerification :Screens("email_otp_verification")
+    object ResetPassword :Screens("reset_password")
+    object ResetPassword02 :Screens("reset_password02")
 
 }

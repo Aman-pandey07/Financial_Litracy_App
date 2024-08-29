@@ -24,10 +24,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import com.aman.financial_litracy_app.navigation.Screens
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TermsAndConditionScreen() {
+fun TermsAndConditionScreen(navController: NavController) {
     Scaffold(
         topBar = {
             TopAppBar(
@@ -40,7 +42,9 @@ fun TermsAndConditionScreen() {
                     )
                 },
                 navigationIcon = {
-                    IconButton(onClick = { /*TODO*/ }) {
+                    IconButton(onClick = {
+                        navController.popBackStack()
+                    }) {
                         Icon(imageVector = Icons.AutoMirrored.Filled.KeyboardArrowLeft, contentDescription ="Back Button" )
                     }
                 }
@@ -67,7 +71,9 @@ fun TermsAndConditionScreen() {
                 TextCard(title = "7. Clause 7", content = "The sun dappled through the leaves as I strolled along the winding path. Birdsong filled the air, and the gentle breeze carried the sweet scent of wildflowers. A gentle smile crept across my face as I savored the tranquility of the moment.")
                 TextCard(title = "8. Clause 8", content = "The sun dappled through the leaves as I strolled along the winding path. Birdsong filled the air, and the gentle breeze carried the sweet scent of wildflowers. A gentle smile crept across my face as I savored the tranquility of the moment. hii this is tp")
                 Button(
-                    onClick = { /*TODO*/ },
+                    onClick = {
+                        navController.navigate(Screens.HomeScreen.route)
+                    },
                     modifier = Modifier.fillMaxWidth(),
                     colors = ButtonColors(
                         containerColor = MaterialTheme.colorScheme.primary,
@@ -83,11 +89,11 @@ fun TermsAndConditionScreen() {
     )
 }
 
-@Preview
-@Composable
-fun TermsAndConditionScreenPreview() {
-    TermsAndConditionScreen()
-}
+//@Preview
+//@Composable
+//fun TermsAndConditionScreenPreview() {
+//    TermsAndConditionScreen()
+//}
 
 @Composable
 fun TextCard(title: String, content: String) {

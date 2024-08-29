@@ -43,12 +43,14 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.aman.financial_litracy_app.R
+import com.aman.financial_litracy_app.navigation.Screens
 
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun BookAWorkshopScreen(modifier: Modifier = Modifier) {
+fun BookAWorkshopScreen(navController: NavController) {
     Scaffold(
         topBar = {
             TopAppBar(
@@ -61,7 +63,9 @@ fun BookAWorkshopScreen(modifier: Modifier = Modifier) {
                     )
                 },
                 navigationIcon = {
-                    IconButton(onClick = { /*TODO*/ }) {
+                    IconButton(onClick = {
+                        navController.popBackStack()
+                    }) {
                         Icon(imageVector = Icons.AutoMirrored.Filled.KeyboardArrowLeft, contentDescription ="Back Button" )
                     }
                 }
@@ -253,7 +257,8 @@ fun BookAWorkshopScreen(modifier: Modifier = Modifier) {
 
                 Button(
                     onClick = {
-                        // Handle submit
+                        // Handle submit]
+                        navController.navigate(Screens.HomeScreen.route)
                     },
                     modifier = Modifier
                         .fillMaxWidth()
@@ -270,11 +275,11 @@ fun BookAWorkshopScreen(modifier: Modifier = Modifier) {
 
 
 }
-@Preview
-@Composable
-fun BookAWorkshopScreenPreview(modifier: Modifier = Modifier) {
-    BookAWorkshopScreen()
-}
+//@Preview
+//@Composable
+//fun BookAWorkshopScreenPreview(modifier: Modifier = Modifier) {
+//    BookAWorkshopScreen()
+//}
 
 @Composable
 fun SectionTitle(text: String) {

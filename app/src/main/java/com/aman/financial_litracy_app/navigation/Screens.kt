@@ -24,5 +24,9 @@ sealed class Screens(val route: String) {
     object EmailOtpVerification :Screens("email_otp_verification")
     object ResetPassword :Screens("reset_password")
     object ResetPassword02 :Screens("reset_password02")
+    object SuccessPopup :Screens("success_popup")
+    object UnSuccessfulPopup :Screens("unsuccessful_popup")
+    object SuccessfulLogin :Screens("successful_login")
+    object UnsuccessfulLogin :Screens("unsuccessful_login")
 
 }

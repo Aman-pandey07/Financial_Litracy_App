@@ -14,10 +14,12 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.aman.financial_litracy_app.R
+import com.aman.financial_litracy_app.navigation.Screens
 
 @Composable
-fun ErrorPopup(onRetry: () -> Unit) {
+fun UnSuccessfullPopUpScreen(navController: NavController) {
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -54,7 +56,7 @@ fun ErrorPopup(onRetry: () -> Unit) {
 
                 // Error Message
                 Text(
-                    text = "Account information is incorrect",
+                    text = "Signin Unsuccessful",
                     style = MaterialTheme.typography.titleMedium,
                     fontWeight = FontWeight.Bold,
                     modifier = Modifier.padding(bottom = 8.dp)
@@ -72,7 +74,9 @@ fun ErrorPopup(onRetry: () -> Unit) {
 
                 // Retry Button
                 Button(
-                    onClick = onRetry,
+                    onClick = {
+                        navController.navigate(Screens.SignupStart.route)
+                    },
                     colors = ButtonDefaults.buttonColors(containerColor = Color(0xFFD32F2F)),
                     modifier = Modifier.fillMaxWidth()
                 ) {
@@ -83,8 +87,8 @@ fun ErrorPopup(onRetry: () -> Unit) {
     }
 }
 
-@Preview(showBackground = true)
-@Composable
-fun ErrorPopupPreview() {
-    ErrorPopup(onRetry = {})
-}
+//@Preview(showBackground = true)
+//@Composable
+//fun ErrorPopupPreview() {
+//    ErrorPopup(onRetry = {})
+//}

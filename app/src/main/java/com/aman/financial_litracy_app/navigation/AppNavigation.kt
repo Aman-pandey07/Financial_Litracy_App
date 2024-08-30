@@ -33,15 +33,20 @@ import com.aman.financial_litracy_app.loginregistration.forgetpassword.ForgetPas
 import com.aman.financial_litracy_app.loginregistration.forgetpassword.ForgetPassword2
 import com.aman.financial_litracy_app.loginregistration.forgetpassword.ForgetPassword3
 import com.aman.financial_litracy_app.loginregistration.forgetpassword.ForgetPassword4
+import com.aman.financial_litracy_app.loginregistration.login.SuccessfulLogin
+import com.aman.financial_litracy_app.loginregistration.login.UnsuccessfulLogin
+import com.aman.financial_litracy_app.loginregistration.signup.SuccessPopup
+import com.aman.financial_litracy_app.loginregistration.signup.UnSuccessfullPopUpScreen
 import com.aman.financial_litracy_app.navigation.Routes
 import com.aman.financial_litracy_app.navigation.Screens
 import com.aman.financial_litracy_app.onboard.OnboardingScreen
 import com.aman.financial_litracy_app.payment.PaymentScreen
+import com.aman.financial_litracy_app.viewmodel.AuthViewModel
 import com.aman.financial_litracy_app.viewmodel.CourseViewModel
 
 
 @Composable
-fun App() {
+fun App(authViewModel: AuthViewModel) {
 
     val navController = rememberNavController()
     val context = LocalContext.current
@@ -55,10 +60,10 @@ fun App() {
         startDestination =if (showOnboarding) Routes.OnboardingScreen else Routes.Login
     ) {
         composable(Screens.Login.route) {
-            Login(navController)
+            Login(navController, authViewModel)
         }
         composable(Screens.SignupStart.route) {
-            SignupStart(navController)
+            SignupStart(navController,authViewModel)
         }
         composable(Screens.SignupComplete.route) {
             SignupComplete(navController)
@@ -79,7 +84,7 @@ fun App() {
             SelectClass(navController)
         }
         composable(Screens.HomeScreen.route) {
-            HomeScreen(navController)
+            HomeScreen(navController,authViewModel)
         }
         composable(Screens.OnboardingScreen.route) {
             OnboardingScreen(navController) {
@@ -90,7 +95,7 @@ fun App() {
             }
         }
         composable(Screens.LeftNavigationDrawer.route){
-            LeftNavigationDrawer(navController)
+            LeftNavigationDrawer(navController,authViewModel)
         }
 
 
@@ -132,6 +137,18 @@ fun App() {
         }
         composable(Screens.ResetPassword02.route){
             ResetPassword02(navController)
+        }
+        composable(Screens.SuccessPopup.route){
+            SuccessPopup(navController)
+        }
+        composable(Screens.UnSuccessfulPopup.route){
+            UnSuccessfullPopUpScreen(navController)
+        }
+        composable(Screens.SuccessfulLogin.route){
+            SuccessfulLogin(navController)
+        }
+        composable(Screens.UnsuccessfulLogin.route){
+            UnsuccessfulLogin(navController,authViewModel)
         }
 
 

@@ -20,6 +20,8 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -30,9 +32,18 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.aman.financial_litracy_app.R
 import com.aman.financial_litracy_app.navigation.Screens
+import com.aman.financial_litracy_app.viewmodel.AuthState
+import com.aman.financial_litracy_app.viewmodel.AuthViewModel
 
 @Composable
-fun LeftNavigationDrawer(navController: NavController) {
+fun LeftNavigationDrawer(navController: NavController,authViewModel: AuthViewModel) {
+    val authState = authViewModel.authState.observeAsState()
+    LaunchedEffect(authState.value) {
+        when(authState.value){
+            is AuthState.Unauthenticated -> navController.navigate(Screens.Login.route)
+            else->Unit
+        }
+    }
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -97,7 +108,7 @@ fun LeftNavigationDrawer(navController: NavController) {
 
             Spacer(modifier = Modifier.weight(1f))
             HorizontalDivider()
-            NavigationItem(icon = R.drawable.logout_icon, text = "Logout",onClick = { navController.navigate(Screens.Login.route) })
+            NavigationItem(icon = R.drawable.logout_icon, text = "Logout",onClick = {authViewModel.logout() })
         }
     }
 }

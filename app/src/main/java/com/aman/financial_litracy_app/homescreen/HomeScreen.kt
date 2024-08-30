@@ -1,7 +1,7 @@
 package com.aman.financial_litracy_app.homescreen
 
 
-import android.graphics.Paint.Style
+
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -43,7 +43,9 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -64,11 +66,14 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.aman.financial_litracy_app.R
 import com.aman.financial_litracy_app.navigation.Screens
+import com.aman.financial_litracy_app.viewmodel.AuthState
+import com.aman.financial_litracy_app.viewmodel.AuthViewModel
 
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun HomeScreen(navController: NavController){
+fun HomeScreen(navController: NavController,authViewModel: AuthViewModel){
+
     Scaffold(
         topBar = {
             TopAppBar(
@@ -195,12 +200,12 @@ fun HomeScreen(navController: NavController){
     )
 }
 
-@Preview
-@Composable
-fun HomeScreenPreview(){
-val navController = rememberNavController()
-    HomeScreen(navController = navController)
-}
+//@Preview
+//@Composable
+//fun HomeScreenPreview(){
+//val navController = rememberNavController()
+//    HomeScreen(navController = navController)
+//}
 
 //Bottom app bar items code
 @Composable

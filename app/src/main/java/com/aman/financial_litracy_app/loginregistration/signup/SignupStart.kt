@@ -29,7 +29,9 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -49,19 +51,31 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import com.aman.financial_litracy_app.R
 import com.aman.financial_litracy_app.navigation.Screens
+import com.aman.financial_litracy_app.viewmodel.AuthState
+import com.aman.financial_litracy_app.viewmodel.AuthViewModel
 
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SignupStart(
-    navController: NavController
+    navController: NavController,authViewModel: AuthViewModel
     ) {
     var showPopup by remember { mutableStateOf(false) }
 
     val fullName = remember{ mutableStateOf("") }
-    val email = remember { mutableStateOf("") }
+    var email by remember { mutableStateOf("") }
     val phoneNumber = remember { mutableStateOf("") }
-    val password = remember { mutableStateOf("") }
+    var password by remember { mutableStateOf("") }
+
+    val authState = authViewModel.authState.observeAsState()
+
+    LaunchedEffect (authState.value){
+        when(authState.value){
+            is AuthState.Authenticated->navController.navigate(Screens.SuccessPopup.route)
+            is AuthState.Error ->navController.navigate(Screens.UnSuccessfulPopup.route)
+            else -> Unit
+        }
+    }
 
     Surface(
         modifier = Modifier
@@ -87,13 +101,14 @@ fun SignupStart(
                 color = MaterialTheme.colorScheme.onBackground
             )
             Spacer(modifier = Modifier.height(16.dp))
-            if (showPopup) {
-                SuccessPopup(onContinue = {
-                    showPopup = false
-                    // Navigate to another screen or perform another action
-                    navController.navigate(Screens.Login.route)
-                })
-            }
+
+//            if (showPopup) {
+//                SuccessPopup(onContinue = {
+//                    showPopup = false
+//                    // Navigate to another screen or perform another action
+//                    navController.navigate(Screens.Login.route)
+//                })
+//            }
 
             OutlinedTextField(
                 value = fullName.value,
@@ -108,8 +123,8 @@ fun SignupStart(
             Spacer(modifier = Modifier.height(16.dp))
 
             OutlinedTextField(
-                value = email.value,
-                onValueChange = { email.value = it },
+                value = email,
+                onValueChange = { email = it },
                 label = { Text("Email address") },
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email),
                 modifier = Modifier.fillMaxWidth(),
@@ -147,8 +162,8 @@ fun SignupStart(
 
 
             OutlinedTextField(
-                value = password.value,
-                onValueChange = { password.value = it },
+                value = password,
+                onValueChange = { password = it },
                 label = { Text("Password") },
                 visualTransformation = PasswordVisualTransformation(),
                 keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
@@ -166,8 +181,10 @@ fun SignupStart(
             Button(
                 onClick = {
 //                navController.navigate(Screens.ForgetPassword1.route)
-                    showPopup = true
+                    authViewModel.signup(email,password)
+
                 },
+                enabled = authState.value!=AuthState.Loading,
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(horizontal = 20.dp)
@@ -260,9 +277,9 @@ fun SignupStart(
 
 
 
-@Preview
-@Composable
-fun SignStartPreview(){
-    val navController = rememberNavController()
-    SignupStart(navController = navController)
-}
+//@Preview
+//@Composable
+//fun SignStartPreview(){
+//    val navController = rememberNavController()
+//    SignupStart(navController = navController)
+//}

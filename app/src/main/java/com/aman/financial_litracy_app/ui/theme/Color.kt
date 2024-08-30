@@ -1,7 +1,7 @@
 package com.aman.financial_litracy_app.ui.theme
 
 import androidx.compose.ui.graphics.Color
-val primaryLight = Color(0xFF006495)
+val primaryLight = Color(0xFF35B0FC)
 val onPrimaryLight = Color(0xFFFFFFFF)
 val primaryContainerLight = Color(0xFF59BAFF)
 val onPrimaryContainerLight = Color(0xFF002941)

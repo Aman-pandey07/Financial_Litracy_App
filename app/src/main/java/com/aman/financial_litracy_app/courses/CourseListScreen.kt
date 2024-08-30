@@ -2,6 +2,7 @@ package com.aman.financial_litracy_app.courses
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -26,6 +27,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -33,6 +35,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.aman.financial_litracy_app.R
+import com.aman.financial_litracy_app.navigation.Screens
 import com.aman.financial_litracy_app.viewmodel.CourseViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -57,30 +60,28 @@ fun CourseListScreen(courseViewModel: CourseViewModel,navController: NavControll
                     }
                 }
             )
-        },
-        content = {
+        }
+    ) {
 
 
-
-
-            LazyColumn(
-                modifier = Modifier.fillMaxSize().padding(it)
-            ){
-                item {
-                    AllCoursesHeader()
-                }
-                items(courseViewModel.getCourses()){ course ->
-                    ProductInfoCard(
-                        productName = course.courseName,
-                        instructorName = course.courseInstructor,
-                        duration = course.courseDuration,
-                        numberOfLessons = course.courseDescription,
-                        imagePlaceholder = course.courseImage
-                    )
-                }
+        LazyColumn(
+            modifier = Modifier.fillMaxSize().padding(it)
+        ) {
+            item {
+                AllCoursesHeader()
             }
+            items(courseViewModel.getCourses()) { course ->
+                ProductInfoCard(
+                    productName = course.courseName,
+                    instructorName = course.courseInstructor,
+                    duration = course.courseDuration,
+                    numberOfLessons = course.courseDescription,
+                    imagePlaceholder = course.courseImage
+                ) { navController.navigate(Screens.CourseDetailScreen.route) }
+            }
+        }
 
-            //hardcoded data
+        //hardcoded data
 //            LazyColumn(
 //                modifier = Modifier
 //                    .fillMaxSize()
@@ -101,8 +102,7 @@ fun CourseListScreen(courseViewModel: CourseViewModel,navController: NavControll
 //                    )
 //                }
 //            }
-        }
-    )
+    }
 }
 
 //@Preview
@@ -117,12 +117,14 @@ fun ProductInfoCard(
     instructorName: String,
     duration: String,
     numberOfLessons: String,
-    imagePlaceholder: Int
+    imagePlaceholder: Int,
+    onClick: () -> Unit
 ) {
     Card (
         modifier = Modifier
             .padding(10.dp)
-            .fillMaxWidth(),
+            .fillMaxWidth()
+            .clickable { onClick() },
         colors = CardDefaults.elevatedCardColors(),
         elevation = CardDefaults.cardElevation(),
         border = BorderStroke(1.dp, Color.Gray),

@@ -79,6 +79,7 @@ fun PaymentScreen(navController: NavController) {
             Column(modifier= Modifier
                 .padding(it)
                 .fillMaxSize()
+                .verticalScroll(rememberScrollState())
 
 
             ) {
@@ -228,7 +229,7 @@ fun PaymentScreen(navController: NavController) {
                         onClick = { /* Handle payment submission */ },
                         modifier = Modifier.align(Alignment.CenterHorizontally)
                     ) {
-                        Text(text = "Submit")
+                        Text(text = "Pay Now")
                     }
                 }
             }

@@ -92,7 +92,7 @@ fun SuccessfulLogin(navController: NavController) {
                     onClick = {
                         navController.navigate(Screens.HomeScreen.route)
                     },
-                    colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF00C853)),
+                    colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary),
                     modifier = Modifier.fillMaxWidth()
                 ) {
                     Text(text = "Continue", color = Color.White)

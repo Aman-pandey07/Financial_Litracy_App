@@ -77,9 +77,9 @@ fun SuccessPopup(navController: NavController) {
                 // Continue Button
                 Button(
                     onClick = {
-                        navController.navigate(Screens.HomeScreen.route)
+                        navController.navigate(Screens.SelectClass.route)
                     },
-                    colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF00C853)),
+                    colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary),
                     modifier = Modifier.fillMaxWidth()
                 ) {
                     Text(text = "Continue", color = Color.White)

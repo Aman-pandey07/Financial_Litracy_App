@@ -18,6 +18,8 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Checkbox
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.OutlinedTextField
@@ -45,6 +47,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.aman.financial_litracy_app.R
 import com.aman.financial_litracy_app.navigation.Screens
+import com.aman.financial_litracy_app.ui.theme.ThemeOption
 import com.aman.financial_litracy_app.viewmodel.AuthState
 import com.aman.financial_litracy_app.viewmodel.AuthViewModel
 

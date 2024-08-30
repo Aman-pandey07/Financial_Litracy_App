@@ -31,6 +31,7 @@ import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.icons.filled.Notifications
 import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material3.BottomAppBar
+import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -138,7 +139,20 @@ fun HomeScreen(navController: NavController,authViewModel: AuthViewModel){
                 }
 
                 HorizontalCardList1(courses = dummyCourses1,navController)
-                Text(text = "Hii this is area to fill honestly i have not done work today just to maintain streak i am pushing rubbish on gothub")
+                Button(
+                    onClick = {
+                        // Handle submit]
+                        navController.navigate(Screens.CourseListScreen.route)
+                    },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 20.dp)
+                        .height(50.dp)
+                        .background(color = Color.White),
+                    shape = RoundedCornerShape(10.dp)// Adjust button padding
+                ) {
+                    Text(text = "See All Courses", color = Color.White) // White text on primary background
+                }
 
 
 
@@ -271,7 +285,7 @@ fun CourseSelectionRow(courses: List<String>,navController: NavController) {
             Box(
                 modifier = Modifier
                     .padding(horizontal = 8.dp, vertical = 8.dp)
-                    .background(if (isSelected) Color.LightGray else Color.White)
+                    .background(if (isSelected) MaterialTheme.colorScheme.primary else Color.White)
                     .clickable { selectedCourse = course }
                     .border(
                         width = 2.dp,
@@ -386,10 +400,13 @@ fun CourseCard(course: Course,navController: NavController) {
                 )
                 Spacer(modifier = Modifier.width(10.dp))
                 Text(text = course.author)
-                Spacer(modifier = Modifier.width(10.dp))
-                Text(text = course.price, color = Color.Blue)
+//                Spacer(modifier = Modifier.width(.dp))
             }
-            Text(text = course.duration)
+            Row {
+                Text(text = course.price, color = MaterialTheme.colorScheme.primary, modifier = Modifier.weight(1f))
+                Text(text = course.duration)
+            }
+
         }
     }
 }

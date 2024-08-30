@@ -65,6 +65,24 @@ class AuthViewModel:ViewModel( ) {
         _authState.value = AuthState.Unauthenticated
     }
 
+    fun sendPasswordResetEmail(email: String) {
+        if (email.isEmpty()) {
+            _authState.value = AuthState.Error("Email cannot be empty")
+            return
+        }
+
+
+        _authState.value = AuthState.Loading
+        auth.sendPasswordResetEmail(email)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    _authState.value = AuthState.PasswordResetEmailSent
+                } else {
+                    _authState.value = AuthState.Error(task.exception?.message ?: "Failed to send password reset email")
+                }
+            }
+    }
+
 }
 
 sealed class AuthState{
@@ -72,4 +90,5 @@ sealed class AuthState{
     object Unauthenticated : AuthState()
     object Loading : AuthState()
     data class Error(val message: String) : AuthState()
+    object PasswordResetEmailSent : AuthState()  // New state
 }

@@ -4,6 +4,7 @@ package com.aman.financial_litracy_app.ui.theme
 import androidx.compose.ui.graphics.Color
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.material3.ColorScheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.dynamicDarkColorScheme
@@ -11,6 +12,10 @@ import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
 
 private val lightScheme = lightColorScheme(
@@ -240,38 +245,55 @@ private val highContrastDarkColorScheme = darkColorScheme(
     surfaceContainerHigh = surfaceContainerHighDarkHighContrast,
     surfaceContainerHighest = surfaceContainerHighestDarkHighContrast,
 )
-@Immutable
-data class ColorFamily(
-    val color: Color,
-    val onColor: Color,
-    val colorContainer: Color,
-    val onColorContainer: Color
-)
 
-val unspecified_scheme = ColorFamily(
-    Color.Unspecified, Color.Unspecified, Color.Unspecified, Color.Unspecified
-)
+
+
+enum class ThemeOption {
+    DEFAULT,
+    MEDIUM_CONTRAST,
+    HIGH_CONTRAST
+}
+
+
 
 @Composable
 fun Financial_Litracy_AppTheme(
-    darkTheme: Boolean = isSystemInDarkTheme(),
-    // Dynamic color is available on Android 12+
-    dynamicColor: Boolean = true,
+    darkTheme: Boolean = false,  // Set false for light theme by default, true for dark theme by default
     content: @Composable () -> Unit
 ) {
-    val colorScheme = when {
-        dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
-            val context = LocalContext.current
-            if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
-        }
+    // Choose the appropriate color scheme based on the darkTheme boolean
+    val colorScheme = if (darkTheme) darkScheme else lightScheme
 
-        darkTheme -> darkScheme
-        else -> lightScheme
-    }
-
+    // Apply the selected color scheme to the MaterialTheme
     MaterialTheme(
         colorScheme = colorScheme,
-        typography = Typography,
+        typography = Typography, // This uses the default typography you have set up
         content = content
     )
 }
+
+@Composable
+fun selectColorScheme(
+    darkTheme: Boolean,
+    dynamicColor: Boolean,
+    contrastLevel: String // Add this to handle contrast levels
+): ColorScheme {
+    val context = LocalContext.current
+
+    return when {
+        dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
+            if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
+        }
+        darkTheme -> when (contrastLevel) {
+            "high" -> highContrastDarkColorScheme
+            "medium" -> mediumContrastDarkColorScheme
+            else -> darkScheme
+        }
+        else -> when (contrastLevel) {
+            "high" -> highContrastLightColorScheme
+            "medium" -> mediumContrastLightColorScheme
+            else -> lightScheme
+        }
+    }
+}
+

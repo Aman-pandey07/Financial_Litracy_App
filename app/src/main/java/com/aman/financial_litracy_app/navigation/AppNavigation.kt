@@ -57,7 +57,7 @@ fun App(authViewModel: AuthViewModel) {
 
     NavHost(
         navController = navController,
-        startDestination =if (showOnboarding) Routes.OnboardingScreen else Routes.Login
+        startDestination =if (!showOnboarding) Routes.OnboardingScreen else Routes.Login
     ) {
         composable(Screens.Login.route) {
             Login(navController, authViewModel)
@@ -69,7 +69,7 @@ fun App(authViewModel: AuthViewModel) {
             SignupComplete(navController)
         }
         composable(Screens.ForgetPassword1.route) {
-            ForgetPassword1(navController)
+            ForgetPassword1(navController,authViewModel)
         }
         composable(Screens.ForgetPassword2.route) {
             ForgetPassword2(navController)
@@ -156,6 +156,6 @@ fun App(authViewModel: AuthViewModel) {
 }
 
 
-//             navController.popBackStack() this is for back button navigation
+
 
 

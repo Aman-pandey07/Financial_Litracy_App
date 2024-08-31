@@ -5,7 +5,9 @@ import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
@@ -32,6 +34,7 @@ import androidx.navigation.NavController
 @Composable
 fun AboutUsScreen(navController: NavController) {
     Scaffold(
+        modifier = Modifier.systemBarsPadding().navigationBarsPadding(),
         topBar = {
             TopAppBar(
                 title = {

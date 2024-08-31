@@ -2,7 +2,9 @@ package com.aman.financial_litracy_app.leftnavigationdrawer
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
@@ -31,6 +33,7 @@ import com.aman.financial_litracy_app.navigation.Screens
 @Composable
 fun TermsAndConditionScreen(navController: NavController) {
     Scaffold(
+        modifier = Modifier.systemBarsPadding().navigationBarsPadding(),
         topBar = {
             TopAppBar(
                 title = {

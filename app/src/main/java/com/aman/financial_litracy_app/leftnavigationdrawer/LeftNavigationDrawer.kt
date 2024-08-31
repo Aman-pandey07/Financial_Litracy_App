@@ -11,8 +11,10 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Divider
 import androidx.compose.material3.HorizontalDivider
@@ -49,6 +51,7 @@ fun LeftNavigationDrawer(navController: NavController,authViewModel: AuthViewMod
             .fillMaxSize()
             .padding(horizontal = 16.dp)
             .background(color = Color.White)
+            .systemBarsPadding().navigationBarsPadding()
     ) {
         Spacer(modifier = Modifier.height(30.dp))
         Text(text = "My Profile", modifier = Modifier.fillMaxWidth())

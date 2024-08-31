@@ -10,7 +10,9 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.Button
@@ -52,6 +54,7 @@ fun ForgetPassword1(
         modifier = Modifier
             .fillMaxSize()
             .background(color = MaterialTheme.colorScheme.background) // Use MaterialTheme colors
+            .systemBarsPadding().navigationBarsPadding()
     ) {
         Column(
             modifier = Modifier

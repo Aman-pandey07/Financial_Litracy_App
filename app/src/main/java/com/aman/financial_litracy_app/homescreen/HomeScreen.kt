@@ -156,7 +156,7 @@ fun HomeScreen(navController: NavController,authViewModel: AuthViewModel){
                     shape = RoundedCornerShape(10.dp)// Adjust button padding
                 ) {
                     Text(text = "See All Courses", color = Color.White) // White text on primary background
-                    Text(text = "kuch nahi")
+
                 }
 
 

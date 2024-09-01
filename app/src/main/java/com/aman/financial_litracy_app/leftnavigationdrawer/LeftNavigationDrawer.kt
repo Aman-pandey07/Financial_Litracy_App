@@ -29,6 +29,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
@@ -53,8 +54,7 @@ fun LeftNavigationDrawer(navController: NavController,authViewModel: AuthViewMod
             .background(color = Color.White)
             .systemBarsPadding().navigationBarsPadding()
     ) {
-        Spacer(modifier = Modifier.height(30.dp))
-        Text(text = "My Profile", modifier = Modifier.fillMaxWidth())
+        Text(text = "My Profile", modifier = Modifier.fillMaxWidth(), fontWeight = FontWeight.Bold)
         // Profile details section
         Row(
             modifier = Modifier
